@@ -441,17 +441,42 @@ public class GameBoard extends JPanel implements KeyListener {
 			Rectangle boursesRec = bourses.getBounds();
 
 			if(lorannRec.intersects(boursesRec)){
-				if (lorann.getDir() == "BAS"){
+				switch (lorann.getDir()){
+				
+				case "BAS":
 					Boursess.remove(i);
-				}
-				else if (lorann.getDir() == "HAUT"){
+					break;
+
+				case "HAUT" :
 					Boursess.remove(i);
-				}
-				else if (lorann.getDir() == "GAUCHE"){
+					break;
+					
+				case "GAUCHE":
 					Boursess.remove(i);
-				}
-				else if (lorann.getDir() == "DROITE"){
+					break;
+					
+				case "DROITE":
 					Boursess.remove(i);
+					break;
+				
+				case "HAUTDROITE" : 
+					Boursess.remove(i);
+					break;
+				
+				case "HAUTGAUCHE" :
+					Boursess.remove(i);
+					break;
+				
+				case "BASDROITE" : 
+					Boursess.remove(i);
+					break;
+				
+				case "BASGAUCHE" :
+					Boursess.remove(i);
+					break;
+				
+				default :
+					break;
 				}
 			}
 		}
