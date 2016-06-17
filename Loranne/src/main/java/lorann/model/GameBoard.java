@@ -583,167 +583,55 @@ public class GameBoard extends JPanel implements KeyListener {
 	}
 
 	public void pathToLorann1(Mobile mobile){
-		if(mobile.getX()<lorann.getX()){
-			if (! MonsterCollision("DROITE", mobile)) {
-				mobile.setDir("DROITE");
-				mobile.move();
-			}
-			else if (mobile.getY()< lorann.getY() && ! MonsterCollision("BAS",mobile)){
-				mobile.setDir("BAS");
-				mobile.move();
-				if (! MonsterCollision("DROITE",mobile)) {
-					mobile.setDir("DROITE");
-					mobile.move();
-				}
-			}
-			else if (mobile.getY()> lorann.getY() && ! MonsterCollision("HAUT",mobile)){
-				mobile.setDir("HAUT");
-				mobile.move();
-				if (! MonsterCollision("DROITE",mobile)) {
-					mobile.setDir("DROITE");
-					mobile.move();
-				}
-			}
-			else if (! MonsterCollision("GAUCHE",mobile)){
-				mobile.setDir("GAUCHE");
-				mobile.move();
-			}
+
+		int PlusRapide;
+		PlusRapide = Math.abs((lorann.getX()-(mobile.getX()+0)))+Math.abs((lorann.getY()-(mobile.getY()+0)));
+
+		if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()-16)))+Math.abs((lorann.getY()-(mobile.getY()-16))) && ! MonsterCollision("HAUTGAUCHE",mobile)){
+			PlusRapide = Math.abs((lorann.getX()-(mobile.getX()-16)))+Math.abs((lorann.getY()-(mobile.getY()-16)));
+			mobile.setDir("HAUTGAUCHE");
+			mobile.move();
+			
 		}
-		else if(mobile.getX()>lorann.getX()){
-			if (! MonsterCollision("GAUCHE",mobile)) {
-				mobile.setDir("GAUCHE");
-				mobile.move();
-				}
-				else if (mobile.getY()< lorann.getY() && ! MonsterCollision("BAS",mobile)){
-					mobile.setDir("BAS");
-					mobile.move();
-					if (! MonsterCollision("GAUCHE",mobile)) {
-						mobile.setDir("GAUCHE");
-						mobile.move();
-					}
-				}
-				else if (mobile.getY()> lorann.getY() && ! MonsterCollision("HAUT",mobile)){
-					mobile.setDir("HAUT");
-					mobile.move();
-					if (! MonsterCollision("GAUCHE",mobile)) {
-						mobile.setDir("GAUCHE");
-						mobile.move();
-					}
-				}
-				else if (! MonsterCollision("DROITE",mobile)){
-					mobile.setDir("DROITE");
-					mobile.move();
-				}
+		else if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()+16)))+Math.abs((lorann.getY()-(mobile.getY()-16))) && ! MonsterCollision("HAUTDROITE",mobile)){
+			PlusRapide = Math.abs((lorann.getX()-(mobile.getX()+16)))+Math.abs((lorann.getY()-(mobile.getY()-16)));
+			mobile.setDir("HAUTDROITE");
+			mobile.move();
 		}
-		else if (mobile.getX() == lorann.getX()){
-			if (mobile.getY() < lorann.getY() && ! MonsterCollision("BAS",mobile)){
-				mobile.setDir("BAS");
-				mobile.move();
-				}
-			else if (mobile.getY() < lorann.getY() && ! MonsterCollision("BASGAUCHE",mobile)) {
-					mobile.setDir("BASGAUCHE");
-					mobile.move();
-				}
-			else if (mobile.getY() < lorann.getY() &&  ! MonsterCollision("BASDROITE",mobile)) {
-				mobile.setDir("BASDROITE");
-				mobile.move();
-			}
-			else if (mobile.getY()> lorann.getY() && ! MonsterCollision("HAUT",mobile)){
-				mobile.setDir("HAUT");
-				mobile.move();
-			}
-			else if (mobile.getY()> lorann.getY() && ! MonsterCollision("HAUTGAUCHE",mobile)) {
-					mobile.setDir("HAUTGAUCHE");
-					mobile.move();
-				}
-			else if (mobile.getY()> lorann.getY() && ! MonsterCollision("HAUTDROITE",mobile)) {
-				mobile.setDir("HAUTDROITE");
-				mobile.move();
-			}
+		else if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()-16)))+Math.abs((lorann.getY()-(mobile.getY()+16))) && ! MonsterCollision("BASGAUCHE",mobile)){
+			PlusRapide = Math.abs((lorann.getX()-(mobile.getX()-16)))+Math.abs((lorann.getY()-(mobile.getY()+16)));
+			mobile.setDir("BASGAUCHE");
+			mobile.move();
 		}
-		else if(mobile.getY()<lorann.getY()){
-			if (! MonsterCollision("BAS",mobile)) {
-				mobile.setDir("BAS");
-				mobile.move();
-				}
-				else if (mobile.getX()< lorann.getX() && ! MonsterCollision("DROITE",mobile)){
-					mobile.setDir("DROITE");
-					mobile.move();
-					if (! MonsterCollision("BAS",mobile)) {
-						mobile.setDir("BAS");
-						mobile.move();
-					}
-				}
-				else if (mobile.getX()> lorann.getX() && ! MonsterCollision("GAUCHE",mobile)){
-					mobile.setDir("GAUCHE");
-					mobile.move();
-					if (! MonsterCollision("BAS",mobile)) {
-						mobile.setDir("BAS");
-						mobile.move();
-					}
-				}
-				else if (! MonsterCollision("HAUT",mobile)){
-					mobile.setDir("HAUT");
-					mobile.move();
-				}
+		else if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()+16)))+Math.abs((lorann.getY()-(mobile.getY()+16))) && ! MonsterCollision("BASDROITE",mobile)){
+			PlusRapide = Math.abs((lorann.getX()-(mobile.getX()+16)))+Math.abs((lorann.getY()-(mobile.getY()+16)));
+			mobile.setDir("BASDROITE");
+			mobile.move();
 		}
-		else if(mobile.getY() > lorann.getY()){
-			if (! MonsterCollision("HAUT",mobile)) {
-				mobile.setDir("HAUT");
-				mobile.move();
-				}
-				else if (mobile.getX()< lorann.getX() && ! MonsterCollision("DROITE",mobile)){
-					mobile.setDir("DROITE");
-					mobile.move();
-					if (! MonsterCollision("HAUT",mobile)) {
-						mobile.setDir("HAUT");
-						mobile.move();
-					}
-				}
-				else if (mobile.getX()> lorann.getX() && ! MonsterCollision("GAUCHE",mobile)){
-					mobile.setDir("GAUCHE");
-					mobile.move();
-					if (! MonsterCollision("HAUT",mobile)) {
-						mobile.setDir("HAUT");
-						mobile.move();
-					}
-				}
-				else if (! MonsterCollision("BAS",mobile)){
-					mobile.setDir("BAS");
-					mobile.move();
-				}
+		else if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()+0)))+Math.abs((lorann.getY()-(mobile.getY()+16))) && ! MonsterCollision("BAS",mobile)){
+			PlusRapide = Math.abs((lorann.getX()-(mobile.getX()+0)))+Math.abs((lorann.getY()-(mobile.getY()+16)));
+			mobile.setDir("BAS");
+			mobile.move();
 		}
-		else if (mobile.getY() == lorann.getY()){
-			if (mobile.getX()< lorann.getX() && ! MonsterCollision("DROITE",mobile)){
-				mobile.setDir("DROITE");
-				mobile.move();
-			}
-			else if (mobile.getX()< lorann.getX() && ! MonsterCollision("HAUTDROITE",mobile)) {
-					mobile.setDir("HAUTDROITE");
-					mobile.move();
-				}
-			else if (mobile.getX()< lorann.getX() && ! MonsterCollision("BASDROITE",mobile)) {
-				mobile.setDir("BASDROITE");
-				mobile.move();
-			}
-			else if (mobile.getX()>lorann.getX() && ! MonsterCollision("GAUCHE",mobile)){
-				mobile.setDir("GAUCHE");
-				mobile.move();
-			}
-			else if (mobile.getX()>lorann.getX() && ! MonsterCollision("HAUTGAUCHE",mobile)) {
-					mobile.setDir("HAUTGAUCHE");
-					mobile.move();
-				}
-			else if (mobile.getX()< lorann.getX() && ! MonsterCollision("BASGAUCHE",mobile)) {
-				mobile.setDir("BASGAUCHE");
-				mobile.move();
-			}
+		else if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()-16)))+Math.abs((lorann.getY()-(mobile.getY()+0))) && ! MonsterCollision("GAUCHE",mobile)){
+			PlusRapide = Math.abs((lorann.getX()-(mobile.getX()-16)))+Math.abs((lorann.getY()-(mobile.getY()+0)));
+			mobile.setDir("GAUCHE");
+			mobile.move();
 		}
-		repaint();
+		else if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()+0)))+Math.abs((lorann.getY()-(mobile.getY()-16))) && ! MonsterCollision("HAUT",mobile)){
+			PlusRapide = Math.abs((lorann.getX()-(mobile.getX()+0)))+Math.abs((lorann.getY()-(mobile.getY()-16)));
+			mobile.setDir("HAUT");
+			mobile.move();
+		}
+		else if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()+32)))+Math.abs((lorann.getY()-(mobile.getY()+0))) && ! MonsterCollision("DROITE",mobile)){
+			PlusRapide = Math.abs((lorann.getX()-(mobile.getX()+32)))+Math.abs((lorann.getY()-(mobile.getY()+0)));
+			mobile.setDir("DROITE");
+			mobile.move();
+		}
 	}
 
 	public void pathToLorann2(Mobile mobile){
-		if(mobile.getX()<lorann.getX() && mobile.getY()<=lorann.getY()){
+		if(mobile.getX()<=lorann.getX() && mobile.getY()<=lorann.getY()){
 			if (! MonsterCollision("BASDROITE", mobile)) {
 				mobile.setDir("BASDROITE");
 				mobile.move();
@@ -761,7 +649,7 @@ public class GameBoard extends JPanel implements KeyListener {
 				mobile.move();
 			}
 		}
-		else if(mobile.getX()<lorann.getX() && mobile.getY()>lorann.getY()){
+		else if(mobile.getX()<=lorann.getX() && mobile.getY()>lorann.getY()){
 			if (! MonsterCollision("HAUTDROITE", mobile)) {
 				mobile.setDir("HAUTDROITE");
 				mobile.move();
@@ -832,7 +720,7 @@ public class GameBoard extends JPanel implements KeyListener {
 	}
 	
 	public void keyReleased(KeyEvent arg0) {
-
+		// TODO Auto-generated method stub
 	}
 
 	public void keyTyped(KeyEvent arg0) {

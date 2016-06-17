@@ -23,6 +23,7 @@ public class ViewFrame  extends JFrame{
 		this.add(new GameBoard());
 		this.setVisible(true);
 		
+		
 	}
 
 	
