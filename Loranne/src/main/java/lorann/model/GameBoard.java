@@ -31,7 +31,9 @@ public class GameBoard extends JPanel implements KeyListener {
 	private static ArrayList<Demon3> Demons3;
 	private static ArrayList<Demon4> Demons4;
 	private static ArrayList<Porte_sortie> PorteSorties;
+	private static ArrayList<Sortileges> Sortilegess;
 
+	Sortileges sortileges;
 	Bone1 bone1;
 	Bone2 bone2;
 	Bone3 bone3;
@@ -68,6 +70,7 @@ public class GameBoard extends JPanel implements KeyListener {
 			Demons3 = new ArrayList<Demon3>();
 			Demons4 = new ArrayList<Demon4>();
 			PorteSorties = new ArrayList<Porte_sortie>();
+			Sortilegess = new ArrayList<Sortileges>();
 			
 
 			while((i=fr.read()) != -1){
@@ -173,6 +176,7 @@ public class GameBoard extends JPanel implements KeyListener {
 			bourses = (Bourses) Boursess.get(i);
 			g2d.drawImage(bourses.getImage(), bourses.getX(),bourses.getY(), null);
 		}
+		
 		try{
 			g2d.drawImage(lorann.getImage(), lorann.getX(), lorann.getY(), null);
 			g2d.drawImage(demon1.getImage(), demon1.getX(), demon1.getY(), null);
@@ -180,18 +184,22 @@ public class GameBoard extends JPanel implements KeyListener {
 			g2d.drawImage(demon3.getImage(), demon3.getX(), demon3.getY(), null);
 			g2d.drawImage(demon4.getImage(), demon4.getX(), demon4.getY(), null);
 			g2d.drawImage(portesortie.getImage(), portesortie.getX(), portesortie.getY(), null);
+			g2d.drawImage(sortileges.getImage(), sortileges.getX(), sortileges.getY(), null);
 		}
 		catch(Exception ex){
-			g.setColor(Color.BLACK);
+			g.setColor(Color.RED);
 			g.setFont(levelFont);
-			g.drawString("LEVEL : " + level,10, 25);
+			g.drawString("LEVEL : " + level,350,400);
 		}
 		repaint();
 	}
 
 	public void keyPressed(KeyEvent arg0) {
+		
+		int x = 0 ;
+		int y = 0 ;
 		int Touche = arg0.getKeyCode();
-
+		
 		if (Touche == KeyEvent.VK_S || Touche == KeyEvent.VK_DOWN){
 			if (! CheckCollision("BAS")){
 				if (! MonsterEat(demon1)){
@@ -344,10 +352,15 @@ public class GameBoard extends JPanel implements KeyListener {
 			pathToLorann3(demon3);
 			pathToLorann4(demon4);
 		}
-		
+		else if (Touche == KeyEvent.VK_SPACE){
+			Game[x][y] = "SORTILEGES";
+			sortileges = new Sortileges (x*32,y*32);
+			Sortilegess.add(sortileges);
+		}
 		else if (Touche == KeyEvent.VK_R){
 			ChangerLevel();
 		}
+		
 		repaint();
 	}
 
@@ -631,31 +644,31 @@ public class GameBoard extends JPanel implements KeyListener {
 	}
 
 	public void pathToLorann2(Mobile mobile){
-		if(mobile.getX()<=lorann.getX() && mobile.getY()<=lorann.getY()){
-			if (! MonsterCollision("BASDROITE", mobile)) {
-				mobile.setDir("BASDROITE");
-				mobile.move();
-			}
-		}
-		else if(mobile.getX()>=lorann.getX() && mobile.getY()<=lorann.getY()){
-			if (! MonsterCollision("BASGAUCHE", mobile)) {
-				mobile.setDir("BASGAUCHE");
-				mobile.move();
-			}
-		}
-		else if(mobile.getX()>=lorann.getX() && mobile.getY()>lorann.getY()){
-			if (! MonsterCollision("HAUTGAUCHE", mobile)) {
+
+			int PlusRapide;
+			PlusRapide = Math.abs((lorann.getX()-(mobile.getX()+0)))+Math.abs((lorann.getY()-(mobile.getY()+0)));
+
+			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()-16)))+Math.abs((lorann.getY()-(mobile.getY()-16))) && ! MonsterCollision("HAUTGAUCHE",mobile)){
+				PlusRapide = Math.abs((lorann.getX()-(mobile.getX()-16)))+Math.abs((lorann.getY()-(mobile.getY()-16)));
 				mobile.setDir("HAUTGAUCHE");
 				mobile.move();
+				
 			}
-		}
-		else if(mobile.getX()<=lorann.getX() && mobile.getY()>lorann.getY()){
-			if (! MonsterCollision("HAUTDROITE", mobile)) {
+			else if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()+16)))+Math.abs((lorann.getY()-(mobile.getY()-16))) && ! MonsterCollision("HAUTDROITE",mobile)){
+				PlusRapide = Math.abs((lorann.getX()-(mobile.getX()+16)))+Math.abs((lorann.getY()-(mobile.getY()-16)));
 				mobile.setDir("HAUTDROITE");
 				mobile.move();
 			}
-		}
-		repaint();
+			else if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()-16)))+Math.abs((lorann.getY()-(mobile.getY()+16))) && ! MonsterCollision("BASGAUCHE",mobile)){
+				PlusRapide = Math.abs((lorann.getX()-(mobile.getX()-16)))+Math.abs((lorann.getY()-(mobile.getY()+16)));
+				mobile.setDir("BASGAUCHE");
+				mobile.move();
+			}
+			else if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()+16)))+Math.abs((lorann.getY()-(mobile.getY()+16))) && ! MonsterCollision("BASDROITE",mobile)){
+				PlusRapide = Math.abs((lorann.getX()-(mobile.getX()+16)))+Math.abs((lorann.getY()-(mobile.getY()+16)));
+				mobile.setDir("BASDROITE");
+				mobile.move();
+			}
 	}
 	
 	public void pathToLorann3(Mobile mobile){
@@ -665,7 +678,7 @@ public class GameBoard extends JPanel implements KeyListener {
 				mobile.move();
 			}
 		}
-		else if(mobile.getX()>=lorann.getX()){
+		else if(mobile.getX()>lorann.getX()){
 			if (! MonsterCollision("GAUCHE", mobile)) {
 				mobile.setDir("GAUCHE");
 				mobile.move();
@@ -685,7 +698,6 @@ public class GameBoard extends JPanel implements KeyListener {
 				}
 			}
 		}
-		repaint();
 	}
 	
 	public void pathToLorann4(Mobile mobile){
@@ -716,7 +728,6 @@ public class GameBoard extends JPanel implements KeyListener {
 				}
 			}
 		}
-		repaint();
 	}
 	
 	public void keyReleased(KeyEvent arg0) {
