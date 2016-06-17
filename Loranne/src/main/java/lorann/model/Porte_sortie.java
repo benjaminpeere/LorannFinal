@@ -4,13 +4,9 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class Porte_sortie {
-
-	int x,y;
+public class Porte_sortie extends NonMobile {
 	
 	Image Porte;
-	
-	
 
 	public Porte_sortie (int Startx, int Starty){
 		x = Startx;
@@ -19,15 +15,6 @@ public class Porte_sortie {
 		ImageIcon iPorte = new ImageIcon("Images/gate_closed.png");
 		Porte = iPorte.getImage();
 	}
-	
-	public int getX() {
-		return x;
-	}
-	
-	public int getY() {
-		return y;
-	}
-	
 	
 	public Image getImage(){
 		

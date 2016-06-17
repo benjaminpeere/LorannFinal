@@ -1,12 +1,9 @@
 package lorann.model;
 
 import java.awt.Image;
-import java.awt.Rectangle;
-
 import javax.swing.ImageIcon;
 
-public class Bourses {
-	int x,y;
+public class Bourses extends NonMobile{
 	Image Bourses;
 	
 	public Bourses(int Startx, int Starty){
@@ -17,26 +14,8 @@ public class Bourses {
 		Bourses = iBourses.getImage();
 	}
 
-	public Rectangle getBounds(){ //pour les collisions
-		Rectangle Box = new Rectangle(x,y,32,32);
-		return Box;
-	}
-	
-	public int getX(){
-		return x;
-	}
-	
-	public int getY(){
-		return y;
-	}
-	
 	public Image getImage(){
 		return Bourses;
-	}
-
-	public static void CheckCollision() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

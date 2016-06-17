@@ -503,6 +503,7 @@ public class GameBoard extends JPanel implements KeyListener {
 				portesortieouverte =(PorteSortieOuverte) porteSortiesOuverte.get(i);
 				if(lorannRec.intersects(ouvertRec)){
 					ChangerLevel();
+					porteSortiesOuverte.remove(i);
 				}
 			}
 		}
