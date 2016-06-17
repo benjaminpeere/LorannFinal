@@ -29,6 +29,7 @@ public class GameBoard extends JPanel implements KeyListener {
 	private static ArrayList<Demon3> Demons3;
 	private static ArrayList<Demon4> Demons4;
 	private static ArrayList<Porte_sortie> PorteSorties;
+	private static ArrayList<PorteSortieOuverte>porteSortiesOuverte;
 
 	Murs mur;
 	Lorann lorann;
@@ -39,6 +40,7 @@ public class GameBoard extends JPanel implements KeyListener {
 	Demon3 demon3;
 	Demon4 demon4;
 	Porte_sortie portesortie;
+	PorteSortieOuverte portesortieouverte;
 	Font levelFont = new Font("SansSerif", Font.BOLD, 30);
 	FileReader fr;
 
@@ -62,6 +64,7 @@ public class GameBoard extends JPanel implements KeyListener {
 			Demons3 = new ArrayList<Demon3>();
 			Demons4 = new ArrayList<Demon4>();
 			PorteSorties = new ArrayList<Porte_sortie>();
+			
 
 			while((i=fr.read()) != -1){
 				char strImg = (char) i;
@@ -115,6 +118,7 @@ public class GameBoard extends JPanel implements KeyListener {
 					portesortie = new Porte_sortie (x*32,y*32);
 					PorteSorties.add(portesortie);
 				}
+				
 				else if (strImg == ' '){
 					Game[x][y] = null;
 				}
@@ -132,6 +136,40 @@ public class GameBoard extends JPanel implements KeyListener {
 			}
 		}
 		catch(Exception ex){
+			repaint();
+		}
+	}
+	
+	public void PorteOuverte(){
+		try{
+			fr = new FileReader("Maps/level1.level");
+			int x=0, y=0, i=0;
+			porteSortiesOuverte = new ArrayList<PorteSortieOuverte>();
+			
+			while((i=fr.read()) != -1){
+				char strImg = (char) i;
+				if(strImg == '9'){
+					Game[x][y] = "PORTESORTIEOUVERTE";
+					portesortieouverte = new PorteSortieOuverte (x*32,y*32);
+					porteSortiesOuverte.add(portesortieouverte);
+				}
+				else if (strImg == ' '){
+					Game[x][y] = null;
+				}
+				else if (strImg == '\r' || strImg == '\n'){
+					x--;
+				}
+				if (x==11){
+					y++;
+					x=0;
+				}
+				else {
+					x++;
+				}
+
+			}
+		}
+		catch(Exception e){
 			repaint();
 		}
 	}
@@ -159,6 +197,7 @@ public class GameBoard extends JPanel implements KeyListener {
 			g2d.drawImage(demon3.getImage(), demon3.getX(), demon3.getY(), null);
 			g2d.drawImage(demon4.getImage(), demon4.getX(), demon4.getY(), null);
 			g2d.drawImage(portesortie.getImage(), portesortie.getX(), portesortie.getY(), null);
+			g2d.drawImage(portesortieouverte.getImage(), portesortieouverte.getX(), portesortieouverte.getY(), null);
 
 		}
 		catch(Exception ex){
@@ -430,6 +469,19 @@ public class GameBoard extends JPanel implements KeyListener {
 				bulle = (Bulle) Bulles.get(i);
 				if (lorannRec.intersects(objectifRec)){
 					Bulles.remove(i);
+					PorteOuverte();
+					
+				}
+			}
+		}
+		
+		for(int i=0; i<porteSortiesOuverte.size(); i++){
+			portesortieouverte =(PorteSortieOuverte) porteSortiesOuverte.get(i);
+			Rectangle ouvertRec = portesortieouverte.getBounds();
+			
+			for(int j=0; j<porteSortiesOuverte.size(); j++){
+				portesortieouverte =(PorteSortieOuverte) porteSortiesOuverte.get(i);
+				if(lorannRec.intersects(ouvertRec)){
 					ChangerLevel();
 				}
 			}
