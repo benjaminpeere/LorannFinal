@@ -1,30 +1,23 @@
 package lorann.model;
 
-import java.awt.Image;
-import javax.swing.ImageIcon;
-
-public class Murs extends NonMobile{
-
-	Image Bone;
-	ImageIcon iMur = new ImageIcon("Images/bone.png");
-	ImageIcon iMurHorizon = new ImageIcon("Images/horizontal_bone.png");
-	ImageIcon iMurVerti = new ImageIcon("Images/vertical_bone.png");
+import java.awt.Rectangle;
 
 
-	public Murs(int Startx, int Starty){
+public class Murs {
 
-		this.x = Startx;
-		this.y = Starty;
+int x,y;
+	
+	public Rectangle getBounds(){
+		Rectangle Box = new Rectangle (x,y,32,32);
+		return Box;
 	}
 
-	public Image getImage(){
-			Bone = iMurVerti.getImage();
-			Bone = iMurHorizon.getImage();
-			Bone = iMur.getImage();
-		
-		return Bone;
+	public int getX() {
+		return x;
 	}
-
+	public int getY() {
+		return y;
+	}
 }
 
 

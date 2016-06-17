@@ -3,7 +3,7 @@ package lorann.model;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-public class Bulle extends NonMobile{
+public class Bulle extends NonMobileFranchissable{
 	Image Bulle;
 	
 	public Bulle(int Startx, int Starty ){

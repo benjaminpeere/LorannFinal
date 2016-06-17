@@ -3,7 +3,7 @@ package lorann.model;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-public class Bourses extends NonMobile{
+public class Bourses extends NonMobileFranchissable{
 	Image Bourses;
 	
 	public Bourses(int Startx, int Starty){

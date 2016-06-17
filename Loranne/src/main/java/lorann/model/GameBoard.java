@@ -21,7 +21,9 @@ public class GameBoard extends JPanel implements KeyListener {
 	private static final long serialVersionUID = 1L;
 	String Game[][] = new String [12][12];
 	int level = 1;
-	private static ArrayList<Murs> Murss;
+	private static ArrayList<Bone1> Bones1;
+	private static ArrayList<Bone2> Bones2;
+	private static ArrayList<Bone3> Bones3;
 	private static ArrayList<Bulle> Bulles;
 	private static ArrayList<Bourses> Boursess;
 	private static ArrayList<Demon1> Demons1;
@@ -31,7 +33,9 @@ public class GameBoard extends JPanel implements KeyListener {
 	private static ArrayList<Porte_sortie> PorteSorties;
 	private static ArrayList<PorteSortieOuverte>porteSortiesOuverte;
 
-	Murs mur;
+	Bone1 bone1;
+	Bone2 bone2;
+	Bone3 bone3;
 	Lorann lorann;
 	Bulle bulle;
 	Bourses bourses;
@@ -56,7 +60,9 @@ public class GameBoard extends JPanel implements KeyListener {
 			fr = new FileReader("Maps/level1.level");
 			int x=0, y=0, i=0;
 
-			Murss = new ArrayList<Murs>();
+			Bones1 = new ArrayList<Bone1>();
+			Bones2 = new ArrayList<Bone2>();
+			Bones3 = new ArrayList<Bone3>();
 			Bulles = new ArrayList<Bulle>();
 			Boursess = new ArrayList<Bourses>();
 			Demons1 = new ArrayList<Demon1>();
@@ -71,49 +77,54 @@ public class GameBoard extends JPanel implements KeyListener {
 
 				if(strImg == '0'){
 					Game [x][y] = "MURS";
-					mur = new Murs(x*32, y*32);
-					Murss.add(mur);
+					bone1 = new Bone1(x*32, y*32);
+					Bones1.add(bone1);
 				}
-				else if (strImg == '1'){
+				else if(strImg == '1'){
+					Game [x][y] = "MURS";
+					bone2 = new Bone2(x*32, y*32);
+					Bones2.add(bone2);
+				}
+				else if(strImg == '2'){
+					Game [x][y] = "MURS";
+					bone3 = new Bone3(x*32, y*32);
+					Bones3.add(bone3);
+				}
+				else if (strImg == '3'){
 					Game [x][y] = "LORANN";
 					lorann = new Lorann (x*32, y*32);
 				}
-				else if (strImg == '2'){
+				else if (strImg == '4'){
 					Game [x][y] = "BULLES";
 					bulle = new Bulle (x*32, y*32);
 					Bulles.add(bulle);
 				}
-				else if (strImg == '3'){
+				else if (strImg == '5'){
 					Game [x][y] = "BOURSES";
 					bourses = new Bourses (x*32, y*32);
 					Boursess.add(bourses);
 				}
-				else if (strImg == '4'){
-					Game [x][y] = "BOURSES";
-					bourses = new Bourses (x*32, y*32);
-					Boursess.add(bourses);
-				}
-				else if(strImg == '5'){
+				else if(strImg == '6'){
 					Game[x][y] = "DEMON1";
 					demon1 = new Demon1 (x*32,y*32);
 					Demons1.add(demon1);
 				}
-				else if(strImg == '6'){
+				else if(strImg == '7'){
 					Game[x][y] = "DEMON2";
 					demon2 = new Demon2 (x*32,y*32);
 					Demons2.add(demon2);
 				}
-				else if(strImg == '7'){
+				else if(strImg == '8'){
 					Game[x][y] = "DEMON3";
 					demon3 = new Demon3 (x*32,y*32);
 					Demons3.add(demon3);
 				}
-				else if(strImg == '8'){
+				else if(strImg == '9'){
 					Game[x][y] = "DEMON4";
 					demon4 = new Demon4 (x*32,y*32);
 					Demons4.add(demon4);
 				}
-				else if(strImg == '9'){
+				else if(strImg == 'S'){
 					Game[x][y] = "PORTESORTIE";
 					portesortie = new Porte_sortie (x*32,y*32);
 					PorteSorties.add(portesortie);
@@ -178,9 +189,17 @@ public class GameBoard extends JPanel implements KeyListener {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
 
-		for(int i = 0; i< Murss.size(); i++){
-			mur = (Murs) Murss.get(i);
-			g2d.drawImage(mur.getImage(), mur.getX(), mur.getY(), null);
+		for(int i = 0; i< Bones1.size(); i++){
+			bone1 = (Bone1) Bones1.get(i);
+			g2d.drawImage(bone1.getImage(), bone1.getX(), bone1.getY(), null);
+		}
+		for(int i = 0; i< Bones2.size(); i++){
+			bone2 = (Bone2) Bones2.get(i);
+			g2d.drawImage(bone2.getImage(), bone2.getX(), bone2.getY(), null);
+		}
+		for(int i = 0; i< Bones3.size(); i++){
+			bone3 = (Bone3) Bones3.get(i);
+			g2d.drawImage(bone3.getImage(), bone3.getX(), bone3.getY(), null);
 		}
 		for(int i = 0; i< Bulles.size(); i++){
 			bulle = (Bulle) Bulles.get(i);
@@ -398,10 +417,24 @@ public class GameBoard extends JPanel implements KeyListener {
 			lorannRec.setBounds(lorannRec.x + 32,lorannRec.y - 32, lorannRec.width, lorannRec.height);
 		}
 
-		for(int i=0;i<Murss.size();i++){
-			mur = (Murs) Murss.get(i);
-			Rectangle murRec = mur.getBounds();
-			if(lorannRec.intersects(murRec)){
+		for(int i=0;i<Bones1.size();i++){
+			bone1 = (Bone1) Bones1.get(i);
+			Rectangle bone1Rec = bone1.getBounds();
+			if(lorannRec.intersects(bone1Rec)){
+				return true;
+			}
+		}
+		for(int i=0;i<Bones2.size();i++){
+			bone2 = (Bone2) Bones2.get(i);
+			Rectangle bone2Rec = bone2.getBounds();
+			if(lorannRec.intersects(bone2Rec)){
+				return true;
+			}
+		}
+		for(int i=0;i<Bones3.size();i++){
+			bone3 = (Bone3) Bones3.get(i);
+			Rectangle bone3Rec = bone3.getBounds();
+			if(lorannRec.intersects(bone3Rec)){
 				return true;
 			}
 		}
@@ -527,10 +560,24 @@ public class GameBoard extends JPanel implements KeyListener {
 			mobileRec.setBounds(mobileRec.x ,mobileRec.y +32, mobileRec.width, mobileRec.height);
 		}
 
-		for(int i=0;i<Murss.size();i++){
-			mur = (Murs) Murss.get(i);
-			Rectangle murRec = mur.getBounds();
-			if(mobileRec.intersects(murRec)){
+		for(int i=0;i<Bones1.size();i++){
+			bone1 = (Bone1) Bones1.get(i);
+			Rectangle bone1Rec = bone1.getBounds();
+			if(mobileRec.intersects(bone1Rec)){
+				return true;
+			}
+		}
+		for(int i=0;i<Bones2.size();i++){
+			bone2 = (Bone2) Bones2.get(i);
+			Rectangle bone2Rec = bone2.getBounds();
+			if(mobileRec.intersects(bone2Rec)){
+				return true;
+			}
+		}
+		for(int i=0;i<Bones3.size();i++){
+			bone3 = (Bone3) Bones3.get(i);
+			Rectangle bone3Rec = bone3.getBounds();
+			if(mobileRec.intersects(bone3Rec)){
 				return true;
 			}
 		}

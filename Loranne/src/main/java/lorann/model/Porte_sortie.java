@@ -4,7 +4,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class Porte_sortie extends NonMobile {
+public class Porte_sortie extends NonMobileFranchissable {
 	
 	Image Porte;
 
@@ -17,7 +17,6 @@ public class Porte_sortie extends NonMobile {
 	}
 	
 	public Image getImage(){
-		
 		return Porte;
 	}
 }

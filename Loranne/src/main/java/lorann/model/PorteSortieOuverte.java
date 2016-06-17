@@ -3,7 +3,7 @@ package lorann.model;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-public class PorteSortieOuverte extends NonMobile {
+public class PorteSortieOuverte extends NonMobileFranchissable{
 
 	Image PorteSortieOuverte;
 	
