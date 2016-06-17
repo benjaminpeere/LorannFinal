@@ -21,6 +21,8 @@ public class GameBoard extends JPanel implements KeyListener {
 	private static final long serialVersionUID = 1L;
 	String Game[][] = new String [24][12];
 	int level = 1;
+	int or = 0;
+	int vies = 11;
 	private static ArrayList<Bone1> Bones1;
 	private static ArrayList<Bone2> Bones2;
 	private static ArrayList<Bone3> Bones3;
@@ -31,9 +33,8 @@ public class GameBoard extends JPanel implements KeyListener {
 	private static ArrayList<Demon3> Demons3;
 	private static ArrayList<Demon4> Demons4;
 	private static ArrayList<Porte_sortie> PorteSorties;
-	private static ArrayList<Sortileges> Sortilegess;
 
-	Sortileges sortileges;
+	
 	Bone1 bone1;
 	Bone2 bone2;
 	Bone3 bone3;
@@ -70,7 +71,6 @@ public class GameBoard extends JPanel implements KeyListener {
 			Demons3 = new ArrayList<Demon3>();
 			Demons4 = new ArrayList<Demon4>();
 			PorteSorties = new ArrayList<Porte_sortie>();
-			Sortilegess = new ArrayList<Sortileges>();
 			
 
 			while((i=fr.read()) != -1){
@@ -184,22 +184,18 @@ public class GameBoard extends JPanel implements KeyListener {
 			g2d.drawImage(demon3.getImage(), demon3.getX(), demon3.getY(), null);
 			g2d.drawImage(demon4.getImage(), demon4.getX(), demon4.getY(), null);
 			g2d.drawImage(portesortie.getImage(), portesortie.getX(), portesortie.getY(), null);
-			g2d.drawImage(sortileges.getImage(), sortileges.getX(), sortileges.getY(), null);
 		}
-		catch(Exception ex){
+		catch(Exception ex){}
 			g.setColor(Color.RED);
 			g.setFont(levelFont);
-			g.drawString("LEVEL : " + level,350,400);
-		}
+			g.drawString("LEVEL : " + level + " / Or : " + or + " / Vie : " + vies,200, 400);
+		
 		repaint();
 	}
 
 	public void keyPressed(KeyEvent arg0) {
-		
-		int x = 0 ;
-		int y = 0 ;
 		int Touche = arg0.getKeyCode();
-		
+
 		if (Touche == KeyEvent.VK_S || Touche == KeyEvent.VK_DOWN){
 			if (! CheckCollision("BAS")){
 				if (! MonsterEat(demon1)){
@@ -352,15 +348,10 @@ public class GameBoard extends JPanel implements KeyListener {
 			pathToLorann3(demon3);
 			pathToLorann4(demon4);
 		}
-		else if (Touche == KeyEvent.VK_SPACE){
-			Game[x][y] = "SORTILEGES";
-			sortileges = new Sortileges (x*32,y*32);
-			Sortilegess.add(sortileges);
-		}
+		
 		else if (Touche == KeyEvent.VK_R){
 			ChangerLevel();
 		}
-		
 		repaint();
 	}
 
@@ -436,6 +427,7 @@ public class GameBoard extends JPanel implements KeyListener {
 		Rectangle lorannRec;
 		lorannRec = lorann.getBounds();
 			if(mobileRec.intersects(lorannRec)){
+				vies--;
 				ChangerLevel();
 				return true;
 			}
@@ -454,34 +446,42 @@ public class GameBoard extends JPanel implements KeyListener {
 				
 				case "BAS":
 					Boursess.remove(i);
+					or = or + 100;
 					break;
 
 				case "HAUT" :
 					Boursess.remove(i);
+					or = or + 100;
 					break;
 					
 				case "GAUCHE":
 					Boursess.remove(i);
+					or = or + 100;
 					break;
 					
 				case "DROITE":
 					Boursess.remove(i);
+					or = or + 100;
 					break;
 				
 				case "HAUTDROITE" : 
 					Boursess.remove(i);
+					or = or + 100;
 					break;
 				
 				case "HAUTGAUCHE" :
 					Boursess.remove(i);
+					or = or + 100;
 					break;
 				
 				case "BASDROITE" : 
 					Boursess.remove(i);
+					or = or + 100;
 					break;
 				
 				case "BASGAUCHE" :
 					Boursess.remove(i);
+					or = or + 100;
 					break;
 				
 				default :
@@ -498,9 +498,7 @@ public class GameBoard extends JPanel implements KeyListener {
 			bulle = (Bulle) Bulles.get(i);
 			if (lorannRec.intersects(objectifRec)){
 				Bulles.remove(i);
-
 				portesortie.setEtat("OUVERT");
-
 			}
 
 		}
@@ -509,7 +507,9 @@ public class GameBoard extends JPanel implements KeyListener {
 			portesortie =(Porte_sortie) PorteSorties.get(i);
 			Rectangle ouvertRec = portesortie.getBounds();
 
-			if(lorannRec.intersects(ouvertRec)){                                                    
+			if(lorannRec.intersects(ouvertRec)){
+				if (portesortie.getEtat() == "FERME")
+					vies--;
 				ChangerLevel();
 			}
 		}

@@ -5,9 +5,9 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class Sortileges extends Mobile{
-	int x,y;
+
 	Image Sortileges;
-	ImageIcon iSortileges = new ImageIcon("Images/fireball_1.png");
+	ImageIcon iSortileges = new ImageIcon("Images/fireball_3.png");
 	
 	public Sortileges(int Startx, int Starty){
 		x = Startx;

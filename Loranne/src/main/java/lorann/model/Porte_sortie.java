@@ -33,6 +33,10 @@ public class Porte_sortie {
 		Rectangle Box = new Rectangle(x,y,32,32);
 		return Box;
 	}
+	public String getEtat() {
+		return Etat;
+	}
+
 	public void setEtat (String newEtat){
 		this.Etat = newEtat;
 	}
