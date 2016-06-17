@@ -16,6 +16,7 @@ public class Demon1 extends Mobile {
 		ImageIcon iDemon1 = new ImageIcon("Images/monster_1.png");
 		Demon1 = iDemon1.getImage();
 	}
+	
 
 	public Image getImage(){
 		return Demon1;
