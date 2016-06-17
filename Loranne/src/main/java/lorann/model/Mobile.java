@@ -51,6 +51,18 @@ public class Mobile {
 			case "GAUCHE":
 				this.moveLeft();
 				break;
+			case "HAUTGAUCHE":
+				this.moveUpLeft();
+				break;
+			case "BASGAUCHE":
+				this.moveDownLeft();
+				break;
+			case "HAUTDROITE":
+				this.moveUpRight();
+				break;
+			case "BASDROITE":
+				this.moveDownRight();
+				break;
 			default:
 				break;
 		}
