@@ -213,7 +213,6 @@ public class GameBoard extends JPanel implements KeyListener {
 
 		if (Touche == KeyEvent.VK_S || Touche == KeyEvent.VK_DOWN){
 			if (! CheckCollision("BAS")){
-				//CheckMonster();
 				if (! MonsterEat(demon1)){
 					if (! MonsterEat(demon2)){
 						if (! MonsterEat(demon3)){
@@ -289,21 +288,17 @@ public class GameBoard extends JPanel implements KeyListener {
 			pathToLorann1(demon4);
 		}
 		else if (Touche == KeyEvent.VK_A){
-			if (! CheckCollision("HAUT")){
-				if (! CheckCollision("GAUCHE")){
+			if (! CheckCollision("HAUTGAUCHE")){
 				if (! MonsterEat(demon1)){
 					if (! MonsterEat(demon2)){
 						if (! MonsterEat(demon3)){
 							if (! MonsterEat(demon4)){
-								lorann.setDir("HAUT");
-								lorann.move();
-								lorann.setDir("GAUCHE");
+								lorann.setDir("HAUTGAUCHE");
 								lorann.move();
 								Objectif();
 							}
 						}
 					}
-				}
 				}
 			}
 			pathToLorann1(demon1);
@@ -312,21 +307,17 @@ public class GameBoard extends JPanel implements KeyListener {
 			pathToLorann1(demon4);
 		}
 		else if (Touche == KeyEvent.VK_E){
-			if (! CheckCollision("HAUT")){
-				if (! CheckCollision("DROITE")){
+			if (! CheckCollision("HAUTDROITE")){
 				if (! MonsterEat(demon1)){
 					if (! MonsterEat(demon2)){
 						if (! MonsterEat(demon3)){
 							if (! MonsterEat(demon4)){
-								lorann.setDir("HAUT");
-								lorann.move();
-								lorann.setDir("DROITE");
+								lorann.setDir("HAUTDROITE");
 								lorann.move();
 								Objectif();
 							}
 						}
 					}
-				}
 				}
 			}
 			pathToLorann1(demon1);
@@ -335,21 +326,17 @@ public class GameBoard extends JPanel implements KeyListener {
 			pathToLorann1(demon4);
 		}
 		else if (Touche == KeyEvent.VK_W){
-			if (! CheckCollision("BAS")){
-				if (! CheckCollision("GAUCHE")){
+			if (! CheckCollision("BASGAUCHE")){
 				if (! MonsterEat(demon1)){
 					if (! MonsterEat(demon2)){
 						if (! MonsterEat(demon3)){
 							if (! MonsterEat(demon4)){
-								lorann.setDir("BAS");
-								lorann.move();
-								lorann.setDir("GAUCHE");
+								lorann.setDir("BASGAUCHE");
 								lorann.move();
 								Objectif();
 							}
 						}
 					}
-				}
 				}
 			}
 			pathToLorann1(demon1);
@@ -358,21 +345,17 @@ public class GameBoard extends JPanel implements KeyListener {
 			pathToLorann1(demon4);
 		}
 		else if (Touche == KeyEvent.VK_X){
-			if (! CheckCollision("BAS")){
-				if (! CheckCollision("DROITE")){
+			if (! CheckCollision("BASDROITE")){
 				if (! MonsterEat(demon1)){
 					if (! MonsterEat(demon2)){
 						if (! MonsterEat(demon3)){
 							if (! MonsterEat(demon4)){
-								lorann.setDir("BAS");
-								lorann.move();
-								lorann.setDir("DROITE");
+								lorann.setDir("BASDROITE");
 								lorann.move();
 								Objectif();
 							}
 						}
 					}
-				}
 				}
 			}
 			pathToLorann1(demon1);
@@ -401,6 +384,18 @@ public class GameBoard extends JPanel implements KeyListener {
 		}
 		else if (direction == "BAS"){
 			lorannRec.setBounds(lorannRec.x ,lorannRec.y +32, lorannRec.width, lorannRec.height);
+		}
+		else if (direction == "BASGAUCHE"){
+			lorannRec.setBounds(lorannRec.x - 32 ,lorannRec.y +32, lorannRec.width, lorannRec.height);
+		}
+		else if (direction == "BASDROITE"){
+			lorannRec.setBounds(lorannRec.x + 32,lorannRec.y +32, lorannRec.width, lorannRec.height);
+		}
+		else if (direction == "HAUTGAUCHE"){
+			lorannRec.setBounds(lorannRec.x - 32,lorannRec.y - 32, lorannRec.width, lorannRec.height);
+		}
+		else if (direction == "HAUTDROITE"){
+			lorannRec.setBounds(lorannRec.x + 32,lorannRec.y - 32, lorannRec.width, lorannRec.height);
 		}
 
 		for(int i=0;i<Murss.size();i++){
