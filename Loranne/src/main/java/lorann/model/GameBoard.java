@@ -792,7 +792,8 @@ public class GameBoard extends JPanel implements KeyListener {
 				mobile.setDir("HAUT");
 				mobile.move();
 			}
-		}
+		
+			
 		else if(mobile.getY()<lorann.getY()){
 			if (! MonsterCollision("BAS", mobile)) {
 				mobile.setDir("BAS");
@@ -814,6 +815,7 @@ public class GameBoard extends JPanel implements KeyListener {
 			}
 		}
 	}
+}
 
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
