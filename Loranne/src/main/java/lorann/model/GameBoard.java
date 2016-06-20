@@ -387,34 +387,27 @@ public class GameBoard extends JPanel implements KeyListener {
 		repaint();
 	}
 	
-	public boolean Shoot(){
+	public void Shoot(){
 		
 		if (shoot == true){
-		if(lorann.getDir() == "BAS"){
-			sortileges.setY(lorann.getY() + 32 );
-			sortileges.setX(lorann.getX());
-			return true;
+			if(lorann.getDir() == "BAS"){
+				sortileges.setY(lorann.getY() + 32 );
+				sortileges.setX(lorann.getX());
+			}
+			else if(lorann.getDir() == "HAUT"){
+				sortileges.setY(lorann.getY()-32 );
+				sortileges.setX(lorann.getX());			
+			}
+			else if(lorann.getDir() == "GAUCHE"){
+				sortileges.setY(lorann.getY());
+				sortileges.setX(lorann.getX()-32);		
+			}
+			else if(lorann.getDir() == "DROITE"){
+				sortileges.setY(lorann.getY());
+				sortileges.setX(lorann.getX()+32);	
+			}
 		}
-		else if(lorann.getDir() == "HAUT"){
-			sortileges.setY(lorann.getY()-32 );
-			sortileges.setX(lorann.getX());
-			return true;
-			
-		}
-		else if(lorann.getDir() == "GAUCHE"){
-			sortileges.setY(lorann.getY());
-			sortileges.setX(lorann.getX()-32);
-			return true;
-		
-		}
-		else if(lorann.getDir() == "DROITE"){
-			sortileges.setY(lorann.getY());
-			sortileges.setX(lorann.getX()+32);	
-			return true;
-		}
-		}
-		return false;
-		
+
 	}
 	
 	public void FollowShoot(){
