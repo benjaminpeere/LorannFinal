@@ -30,7 +30,7 @@ public class GameBoard extends JPanel implements KeyListener {
 	boolean prisond2 = false;
 	boolean prisond3 = false;
 	boolean prisond4 = false;
-	
+
 	private static ArrayList<Bone1> Bones1;
 	private static ArrayList<Bone2> Bones2;
 	private static ArrayList<Bone3> Bones3;
@@ -76,6 +76,7 @@ public class GameBoard extends JPanel implements KeyListener {
 			prisond3 = false;
 			prisond4 = false;
 
+
 			Bones1 = new ArrayList<Bone1>();
 			Bones2 = new ArrayList<Bone2>();
 			Bones3 = new ArrayList<Bone3>();
@@ -86,6 +87,7 @@ public class GameBoard extends JPanel implements KeyListener {
 			Demons3 = new ArrayList<Demon3>();
 			Demons4 = new ArrayList<Demon4>();
 			PorteSorties = new ArrayList<Porte_sortie>();
+			Sortilegess = new ArrayList<Sortileges>();
 
 
 			while((i=fr.read()) != -1){
@@ -207,16 +209,19 @@ public class GameBoard extends JPanel implements KeyListener {
 			demon4 = (Demon4) Demons4.get(i);
 			g2d.drawImage(demon4.getImage(), demon4.getX(),demon4.getY(), null);
 		}
+		for(int i = 0; i< Sortilegess.size(); i++){
+			sortileges = (Sortileges) Sortilegess.get(i);
+			g2d.drawImage(sortileges.getImage(), sortileges.getX(),sortileges.getY(), null);
+		}
 
 		try{
 			g2d.drawImage(lorann.getImage(), lorann.getX(), lorann.getY(), null);
 			g2d.drawImage(portesortie.getImage(), portesortie.getX(), portesortie.getY(), null);
-			g2d.drawImage(sortileges.getImage(), sortileges.getX(), sortileges.getY(), null);
 		}
 		catch(Exception ex){}
 		g.setColor(Color.RED);
 		g.setFont(levelFont);
-		g.drawString("LEVEL : " + level + " / Or : " + or + " / Vie : " + vies,200, 400);
+		g.drawString("LEVEL : " + level + " / Or : " + or + " / Vie : " + vies,240, 400);
 
 		repaint();
 	}
@@ -225,9 +230,7 @@ public class GameBoard extends JPanel implements KeyListener {
 		int Touche = arg0.getKeyCode();
 		int x=0;
 		int y = 0;
-		int space = 1;
-		Sortilegess = new ArrayList<Sortileges>();
-		
+
 		if (Touche == KeyEvent.VK_S || Touche == KeyEvent.VK_DOWN){
 			if (! CheckCollision("BAS")){
 				if (! MonsterEat(demon1)){
@@ -242,6 +245,7 @@ public class GameBoard extends JPanel implements KeyListener {
 					}
 				}
 			}
+			FollowShoot();
 			if (! prisond1)
 				pathToLorann1(demon1);
 			if (! prisond2)
@@ -250,8 +254,7 @@ public class GameBoard extends JPanel implements KeyListener {
 				pathToLorann3(demon3);
 			if (! prisond4)
 				pathToLorann4(demon4);
-			FollowShoot();
-			
+
 		}
 		else if (Touche == KeyEvent.VK_Z || Touche == KeyEvent.VK_UP){
 			if (! CheckCollision("HAUT")){
@@ -267,6 +270,7 @@ public class GameBoard extends JPanel implements KeyListener {
 					}
 				}
 			}
+			FollowShoot();
 			if (! prisond1)
 				pathToLorann1(demon1);
 			if (! prisond2)
@@ -275,7 +279,6 @@ public class GameBoard extends JPanel implements KeyListener {
 				pathToLorann3(demon3);
 			if (! prisond4)
 				pathToLorann4(demon4);
-			FollowShoot();
 		}
 		else if (Touche == KeyEvent.VK_D || Touche == KeyEvent.VK_RIGHT){
 			if (! CheckCollision("DROITE")){
@@ -291,6 +294,7 @@ public class GameBoard extends JPanel implements KeyListener {
 					}
 				}
 			}
+			FollowShoot();
 			if (! prisond1)
 				pathToLorann1(demon1);
 			if (! prisond2)
@@ -299,7 +303,6 @@ public class GameBoard extends JPanel implements KeyListener {
 				pathToLorann3(demon3);
 			if (! prisond4)
 				pathToLorann4(demon4);
-			FollowShoot();
 		}
 		else if (Touche == KeyEvent.VK_Q || Touche == KeyEvent.VK_LEFT){
 			if (! CheckCollision("GAUCHE")){
@@ -315,6 +318,7 @@ public class GameBoard extends JPanel implements KeyListener {
 					}
 				}
 			}
+			FollowShoot();
 			if (! prisond1)
 				pathToLorann1(demon1);
 			if (! prisond2)
@@ -323,7 +327,6 @@ public class GameBoard extends JPanel implements KeyListener {
 				pathToLorann3(demon3);
 			if (! prisond4)
 				pathToLorann4(demon4);
-			FollowShoot();
 		}
 		else if (Touche == KeyEvent.VK_A){
 			if (! CheckCollision("HAUTGAUCHE")){
@@ -339,6 +342,7 @@ public class GameBoard extends JPanel implements KeyListener {
 					}
 				}
 			}
+			FollowShoot();
 			if (! prisond1)
 				pathToLorann1(demon1);
 			if (! prisond2)
@@ -347,7 +351,6 @@ public class GameBoard extends JPanel implements KeyListener {
 				pathToLorann3(demon3);
 			if (! prisond4)
 				pathToLorann4(demon4);
-			FollowShoot();
 		}
 		else if (Touche == KeyEvent.VK_E){
 			if (! CheckCollision("HAUTDROITE")){
@@ -363,6 +366,7 @@ public class GameBoard extends JPanel implements KeyListener {
 					}
 				}
 			}
+			FollowShoot();
 			if (! prisond1)
 				pathToLorann1(demon1);
 			if (! prisond2)
@@ -371,7 +375,6 @@ public class GameBoard extends JPanel implements KeyListener {
 				pathToLorann3(demon3);
 			if (! prisond4)
 				pathToLorann4(demon4);
-			FollowShoot();
 		}
 		else if (Touche == KeyEvent.VK_W){
 			if (! CheckCollision("BASGAUCHE")){
@@ -387,6 +390,7 @@ public class GameBoard extends JPanel implements KeyListener {
 					}
 				}
 			}
+			FollowShoot();
 			if (! prisond1)
 				pathToLorann1(demon1);
 			if (! prisond2)
@@ -395,7 +399,6 @@ public class GameBoard extends JPanel implements KeyListener {
 				pathToLorann3(demon3);
 			if (! prisond4)
 				pathToLorann4(demon4);
-			FollowShoot();
 		}
 		else if (Touche == KeyEvent.VK_X){
 			if (! CheckCollision("BASDROITE")){
@@ -411,6 +414,7 @@ public class GameBoard extends JPanel implements KeyListener {
 					}
 				}
 			}
+			FollowShoot();
 			if (! prisond1)
 				pathToLorann1(demon1);
 			if (! prisond2)
@@ -419,22 +423,22 @@ public class GameBoard extends JPanel implements KeyListener {
 				pathToLorann3(demon3);
 			if (! prisond4)
 				pathToLorann4(demon4);
-			FollowShoot();
 		}
 		else if (Touche == KeyEvent.VK_SPACE){
-			
-			shoot = true;
-			sortileges = new Sortileges(x*32, y*32);
-			Sortilegess.add(sortileges);
-			Shoot();
-			space++;
-		}
-		
-		else if (Touche == KeyEvent.VK_BACK_SPACE)
-		{
-			toucher = true;
-		}
 
+			if (shoot == false){
+				shoot = true;
+				sortileges = new Sortileges(x*32, y*32);
+				Sortilegess.add(sortileges);
+				Shoot();
+			}
+			else if (shoot == true){
+				{
+					SortilegesRemove();
+					toucher = true;
+				}
+			}
+		}
 		else if (Touche == KeyEvent.VK_R){
 			ChangerLevel();
 		}
@@ -448,88 +452,167 @@ public class GameBoard extends JPanel implements KeyListener {
 		}
 		repaint();
 	}
-	
+
 	public void Shoot(){
-		
+
 		if (shoot == true){
 			if(lorann.getDir() == "BAS"){
-				sortileges.setY(lorann.getY() + 32 );
+				sortileges.setY(lorann.getY() - 32 );
 				sortileges.setX(lorann.getX());
+				sortileges.setDir("HAUT");
 			}
 			else if(lorann.getDir() == "HAUT"){
-				sortileges.setY(lorann.getY()-32 );
-				sortileges.setX(lorann.getX());			
+				sortileges.setY(lorann.getY() + 32 );
+				sortileges.setX(lorann.getX());	
+				sortileges.setDir("BAS");
 			}
 			else if(lorann.getDir() == "GAUCHE"){
 				sortileges.setY(lorann.getY());
-				sortileges.setX(lorann.getX()-32);		
+				sortileges.setX(lorann.getX() + 32);
+				sortileges.setDir("DROITE");
 			}
 			else if(lorann.getDir() == "DROITE"){
 				sortileges.setY(lorann.getY());
-				sortileges.setX(lorann.getX()+32);	
+				sortileges.setX(lorann.getX()- 32);	
+				sortileges.setDir("GAUCHE");
+			}
+			else if (lorann.getDir() == "BASDROITE"){
+				sortileges.setY(lorann.getY() - 32 );
+				sortileges.setX(lorann.getX() - 32);	
+				sortileges.setDir("HAUTGAUCHE");
+			}
+			else if (lorann.getDir() == "BASGAUCHE"){
+				sortileges.setY(lorann.getY() - 32 );
+				sortileges.setX(lorann.getX() + 32);	
+				sortileges.setDir("HAUTDROITE");
+			}
+			else if (lorann.getDir() == "HAUTDROITE"){
+				sortileges.setY(lorann.getY() + 32 );
+				sortileges.setX(lorann.getX()- 32);	
+				sortileges.setDir("BASGAUCHE");
+			}
+			else if (lorann.getDir() == "HAUTGAUCHE"){
+				sortileges.setY(lorann.getY() + 32 );
+				sortileges.setX(lorann.getX() + 32);	
+				sortileges.setDir("BASDROITE");
 			}
 		}
 
 	}
-	
+
 	public void FollowShoot(){
-	
+
 		if (shoot == true){
-
-			if (lorann.getX() < sortileges.getX()){
+			if (sortileges.getDir() == "DROITE"){
 				if (CheckSortileges("DROITE") == false && toucher == false){
-					sortileges.setDir("DROITE");
 					sortileges.move();
 				}
 				else {
 					toucher = true;
 				}
-				
+
 				if (toucher == true){
+					CheckSortileges(sortileges.getDir());
 					pathToLorann1(sortileges);
 					SortilegesRemove();
 				}
 			}
-			else if (lorann.getX() > sortileges.getX()){
-				
-			if (CheckSortileges("GAUCHE") == false && toucher == false){
-					sortileges.setDir("GAUCHE");
+			else if (sortileges.getDir() == "GAUCHE"){
+
+				if (CheckSortileges("GAUCHE") == false && toucher == false){
 					sortileges.move();
 				}
 				else {
 					toucher = true;
 				}
-				
+
 				if (toucher == true){
+					CheckSortileges(sortileges.getDir());
 					pathToLorann1(sortileges);
 					SortilegesRemove();
 				}
 			}
-			else if (lorann.getY() > sortileges.getY()){
+			else if (sortileges.getDir() == "HAUT"){
 				if (CheckSortileges("HAUT") == false && toucher == false){
-					sortileges.setDir("HAUT");
 					sortileges.move();
 				}
 				else {
 					toucher = true;
 				}
-				
+
 				if (toucher == true){
+					CheckSortileges(sortileges.getDir());
 					pathToLorann1(sortileges);
 					SortilegesRemove();
 				}
 
 			}
-			else if (lorann.getY() < sortileges.getY()){
+			else if (sortileges.getDir() == "BAS"){
 				if (CheckSortileges("BAS") == false && toucher == false){
-					sortileges.setDir("BAS");
 					sortileges.move();
 				}
 				else {
 					toucher = true;
 				}
-				
+
 				if (toucher == true){
+					CheckSortileges(sortileges.getDir());
+					pathToLorann1(sortileges);
+					SortilegesRemove();
+				}
+			}
+			else if (sortileges.getDir() == "BASGAUCHE"){
+				if (CheckSortileges("BASGAUCHE") == false && toucher == false){
+					sortileges.move();
+				}
+				else {
+					toucher = true;
+				}
+
+				if (toucher == true){
+					CheckSortileges(sortileges.getDir());
+					pathToLorann1(sortileges);
+					SortilegesRemove();
+				}
+			}
+			else if (sortileges.getDir() == "BASDROITE"){
+				if (CheckSortileges("BASDROITE") == false && toucher == false){
+					sortileges.move();
+				}
+				else {
+					toucher = true;
+				}
+
+				if (toucher == true){
+					CheckSortileges(sortileges.getDir());
+					pathToLorann1(sortileges);
+					SortilegesRemove();
+				}
+			}
+			else if (sortileges.getDir() == "HAUTDROITE"){
+				if (CheckSortileges("HAUTDROITE") == false && toucher == false){
+					sortileges.move();
+				}
+				else {
+					toucher = true;
+				}
+
+				if (toucher == true){
+					CheckSortileges(sortileges.getDir());
+					pathToLorann1(sortileges);
+					SortilegesRemove();
+				}
+			}
+			else if (sortileges.getDir() == "HAUTGAUCHE"){
+				if (CheckSortileges("HAUTGAUCHE") == false && toucher == false){
+					sortileges.move();
+				}
+				else {
+					toucher = true;
+				}
+
+				if (toucher == true){
+					CheckSortileges(sortileges.getDir());
 					pathToLorann1(sortileges);
 					SortilegesRemove();
 				}
@@ -586,6 +669,16 @@ public class GameBoard extends JPanel implements KeyListener {
 				return true;
 			}
 		}
+		for (int i=0; i<Sortilegess.size(); i++){
+			sortileges = (Sortileges) Sortilegess.get(i);
+			Rectangle sortilegesRec = sortileges.getBounds();
+			if (lorannRec.intersects(sortilegesRec)){
+				toucher = false;
+				shoot = false;
+				sortileges.setX(1000);
+				sortileges.setY(400);
+			}
+		}
 		return false;
 	}
 
@@ -612,10 +705,10 @@ public class GameBoard extends JPanel implements KeyListener {
 			ChangerLevel();
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	public boolean SortilegesRemove(){
 		Rectangle sortilegesRec;
 		sortilegesRec = sortileges.getBounds();
@@ -637,9 +730,9 @@ public class GameBoard extends JPanel implements KeyListener {
 		if(sortilegesRec.intersects(lorannRec)){
 			toucher = false;
 			shoot = false;
-			sortileges.setX(700);
+			sortileges.setX(1000);
 			sortileges.setY(400);
-			
+			Sortilegess.remove(0);
 			return true;
 		}
 		return false;
@@ -711,7 +804,6 @@ public class GameBoard extends JPanel implements KeyListener {
 				Bulles.remove(i);
 				portesortie.setEtat("OUVERT");
 			}
-
 		}
 
 		for(int i=0; i<PorteSorties.size(); i++){
@@ -805,107 +897,172 @@ public class GameBoard extends JPanel implements KeyListener {
 				return true;
 			}
 		}
+
+
+			if (mobile == demon1){
+				for (int i=0; i<Sortilegess.size(); i++){
+					sortileges = (Sortileges) Sortilegess.get(i);
+					Rectangle sortilegesRec = sortileges.getBounds();
+					if (mobileRec.intersects(sortilegesRec)){
+						toucher = true;
+						prisond1 = true;
+						demon1.setX(33);
+						demon1.setY(385);
+						Demons1.remove(0);
+						return true;
+					}
+				}
+			}
+
+			else if (mobile == demon2){
+				for (int i=0; i<Sortilegess.size(); i++){
+					sortileges = (Sortileges) Sortilegess.get(i);
+					Rectangle sortilegesRec = sortileges.getBounds();
+					if (mobileRec.intersects(sortilegesRec)){
+						toucher = true;
+						prisond2 = true;
+						demon2.setX(97);
+						demon2.setY(385);
+						Demons2.remove(0);
+						return true;
+					}
+				}
+			}
+			else if (mobile == demon3){
+				for (int i=0; i<Sortilegess.size(); i++){
+					sortileges = (Sortileges) Sortilegess.get(i);
+					Rectangle sortilegesRec = sortileges.getBounds();
+					if (mobileRec.intersects(sortilegesRec)){
+						toucher = true;
+						prisond3 = true;
+						demon3.setX(161);
+						demon3.setY(385);
+						Demons3.remove(0);
+						return true;
+					}
+				}
+			}
+			else if (mobile == demon4){
+				for (int i=0; i<Sortilegess.size(); i++){
+					sortileges = (Sortileges) Sortilegess.get(i);
+					Rectangle sortilegesRec = sortileges.getBounds();
+					if (mobileRec.intersects(sortilegesRec)){
+						toucher = true;
+						prisond4 = true;
+						demon4.setX(225);
+						demon4.setY(385);
+						Demons4.remove(0);
+						return true;
+					}
+				}
+			}
 		return false;
 	}
-	
+
 	public boolean CheckSortileges(String direction){
-		
+
 		if (shoot == true){
-		Rectangle sortilegesRec;
-		sortilegesRec = sortileges.getBounds();
-		
-		if (direction == "DROITE"){
-			sortilegesRec.setBounds(sortilegesRec.x +32,sortilegesRec.y, sortilegesRec.width, sortilegesRec.height);
-		}
-		else if (direction == "GAUCHE"){
-			sortilegesRec.setBounds(sortilegesRec.x -32, sortilegesRec.y, sortilegesRec.width, sortilegesRec.height);
-		}
-		else if (direction == "HAUT"){
-			sortilegesRec.setBounds(sortilegesRec.x,sortilegesRec.y -32, sortilegesRec.width, sortilegesRec.height);
-		}
-		else if (direction == "BAS"){
-			sortilegesRec.setBounds(sortilegesRec.x ,sortilegesRec.y +32, sortilegesRec.width, sortilegesRec.height);
-		}
-		else if (direction == "BASGAUCHE"){
-			sortilegesRec.setBounds(sortilegesRec.x - 32 ,sortilegesRec.y +32, sortilegesRec.width, sortilegesRec.height);
-		}
-		else if (direction == "BASDROITE"){
-			sortilegesRec.setBounds(sortilegesRec.x + 32,sortilegesRec.y +32, sortilegesRec.width, sortilegesRec.height);
-		}
-		else if (direction == "HAUTGAUCHE"){
-			sortilegesRec.setBounds(sortilegesRec.x - 32,sortilegesRec.y - 32, sortilegesRec.width, sortilegesRec.height);
-		}
-		else if (direction == "HAUTDROITE"){
-			sortilegesRec.setBounds(sortilegesRec.x + 32,sortilegesRec.y - 32, sortilegesRec.width, sortilegesRec.height);
-		}
-		
-		for(int i=0;i<Bones1.size();i++){
-			bone1 = (Bone1) Bones1.get(i);
-			Rectangle bone1Rec = bone1.getBounds();
-			if(sortilegesRec.intersects(bone1Rec)){
-				return true;
+			Rectangle sortilegesRec;
+			sortilegesRec = sortileges.getBounds();
+
+			if (direction == "DROITE"){
+				sortilegesRec.setBounds(sortilegesRec.x +32,sortilegesRec.y, sortilegesRec.width, sortilegesRec.height);
 			}
-		}
-		for(int i=0;i<Bones2.size();i++){
-			bone2 = (Bone2) Bones2.get(i);
-			Rectangle bone2Rec = bone2.getBounds();
-			if(sortilegesRec.intersects(bone2Rec)){
-				return true;
+			else if (direction == "GAUCHE"){
+				sortilegesRec.setBounds(sortilegesRec.x -32, sortilegesRec.y, sortilegesRec.width, sortilegesRec.height);
 			}
-		}
-		for(int i=0;i<Bones3.size();i++){
-			bone3 = (Bone3) Bones3.get(i);
-			Rectangle bone3Rec = bone3.getBounds();
-			if(sortilegesRec.intersects(bone3Rec)){
-				return true;
+			else if (direction == "HAUT"){
+				sortilegesRec.setBounds(sortilegesRec.x,sortilegesRec.y -32, sortilegesRec.width, sortilegesRec.height);
 			}
-		}
-		if (shoot == true){
-		for(int i=0;i<Demons1.size();i++){
-			demon1 = (Demon1) Demons1.get(i);
-			Rectangle demon1Rec = demon1.getBounds();
-			if(sortilegesRec.intersects(demon1Rec)){
-				toucher = true;
-				prisond1 = true;
-				demon1.setX(20);
-				demon1.setY(400);
-				return true;
+			else if (direction == "BAS"){
+				sortilegesRec.setBounds(sortilegesRec.x ,sortilegesRec.y +32, sortilegesRec.width, sortilegesRec.height);
 			}
-		}
-		for(int i=0;i<Demons2.size();i++){
-			demon2 = (Demon2) Demons2.get(i);
-			Rectangle demon2Rec = demon2.getBounds();
-			if(sortilegesRec.intersects(demon2Rec)){
-				toucher = true;
-				prisond2 = true;
-				demon2.setX(40);
-				demon2.setY(400);
-				return true;
+			else if (direction == "BASGAUCHE"){
+				sortilegesRec.setBounds(sortilegesRec.x - 32 ,sortilegesRec.y +32, sortilegesRec.width, sortilegesRec.height);
 			}
-		}
-		for(int i=0;i<Demons3.size();i++){
-			demon3 = (Demon3) Demons3.get(i);
-			Rectangle demon3Rec = demon3.getBounds();
-			if(sortilegesRec.intersects(demon3Rec)){
-				toucher = true;
-				prisond3 = true;
-				demon3.setX(60);
-				demon3.setY(400);
-				return true;
+			else if (direction == "BASDROITE"){
+				sortilegesRec.setBounds(sortilegesRec.x + 32,sortilegesRec.y +32, sortilegesRec.width, sortilegesRec.height);
 			}
-		}
-		for(int i=0;i<Demons4.size();i++){
-			demon4 = (Demon4) Demons4.get(i);
-			Rectangle demon4Rec = demon4.getBounds();
-			if(sortilegesRec.intersects(demon4Rec)){
-				toucher = true;
-				prisond4 = true;
-				demon4.setX(80);
-				demon4.setY(400);
-				return true;
+			else if (direction == "HAUTGAUCHE"){
+				sortilegesRec.setBounds(sortilegesRec.x - 32,sortilegesRec.y - 32, sortilegesRec.width, sortilegesRec.height);
 			}
-		}
-		}
+			else if (direction == "HAUTDROITE"){
+				sortilegesRec.setBounds(sortilegesRec.x + 32,sortilegesRec.y - 32, sortilegesRec.width, sortilegesRec.height);
+			}
+
+			for(int i=0;i<Bones1.size();i++){
+				bone1 = (Bone1) Bones1.get(i);
+				Rectangle bone1Rec = bone1.getBounds();
+				if(sortilegesRec.intersects(bone1Rec)){
+					return true;
+				}
+			}
+			for(int i=0;i<Bones2.size();i++){
+				bone2 = (Bone2) Bones2.get(i);
+				Rectangle bone2Rec = bone2.getBounds();
+				if(sortilegesRec.intersects(bone2Rec)){
+					return true;
+				}
+			}
+			for(int i=0;i<Bones3.size();i++){
+				bone3 = (Bone3) Bones3.get(i);
+				Rectangle bone3Rec = bone3.getBounds();
+				if(sortilegesRec.intersects(bone3Rec)){
+					return true;
+				}
+			}
+
+				for(int i=0;i<Demons1.size();i++){
+					demon1 = (Demon1) Demons1.get(i);
+					Rectangle demon1Rec = demon1.getBounds();
+					if(sortilegesRec.intersects(demon1Rec)){
+						toucher = true;
+						prisond1 = true;
+						demon1.setX(33);
+						demon1.setY(385);
+						Demons1.remove(0);
+						return true;
+					}
+				}
+
+				for(int i=0;i<Demons2.size();i++){
+					demon2 = (Demon2) Demons2.get(i);
+					Rectangle demon2Rec = demon2.getBounds();
+					if(sortilegesRec.intersects(demon2Rec)){
+						toucher = true;
+						prisond2 = true;
+						demon2.setX(97);
+						demon2.setY(385);
+						Demons2.remove(0);
+						return true;
+					}
+				}
+
+				for(int i=0;i<Demons3.size();i++){
+					demon3 = (Demon3) Demons3.get(i);
+					Rectangle demon3Rec = demon3.getBounds();
+					if(sortilegesRec.intersects(demon3Rec)){
+						toucher = true;
+						prisond3 = true;
+						demon3.setX(161);
+						demon3.setY(385);
+						Demons3.remove(0);
+						return true;
+					}
+				}
+				for(int i=0;i<Demons4.size();i++){
+					demon4 = (Demon4) Demons4.get(i);
+					Rectangle demon4Rec = demon4.getBounds();
+					if(sortilegesRec.intersects(demon4Rec)){
+						toucher = true;
+						prisond4 = true;
+						demon4.setX(225);
+						demon4.setY(385);
+						Demons4.remove(0);
+						return true;
+					}
+				}
+			
 		}
 		return false;
 	}
@@ -1015,25 +1172,25 @@ public class GameBoard extends JPanel implements KeyListener {
 		PlusRapide = 1500;
 
 		if (! MonsterCollision("HAUTGAUCHE",mobile)){
-			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()-32)))+Math.abs((lorann.getY()-(mobile.getY()-32))) /*&& ! MonsterCollision("HAUTGAUCHE",mobile)*/){
+			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()-32)))+Math.abs((lorann.getY()-(mobile.getY()-32)))){
 				PlusRapide = Math.abs((lorann.getX()-(mobile.getX()-32)))+Math.abs((lorann.getY()-(mobile.getY()-32)));
 				mobile.setDir("HAUTGAUCHE");
 			}
 		}
 		if(! MonsterCollision("HAUTDROITE",mobile)){
-			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()+32)))+Math.abs((lorann.getY()-(mobile.getY()-32))) /*&& ! MonsterCollision("HAUTDROITE",mobile)*/){
+			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()+32)))+Math.abs((lorann.getY()-(mobile.getY()-32)))){
 				PlusRapide = Math.abs((lorann.getX()-(mobile.getX()+32)))+Math.abs((lorann.getY()-(mobile.getY()-32)));
 				mobile.setDir("HAUTDROITE");
 			}
 		}
 		if(! MonsterCollision("BASGAUCHE",mobile)){
-			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()-32)))+Math.abs((lorann.getY()-(mobile.getY()+32))) /*&& ! MonsterCollision("BASGAUCHE",mobile)*/){
+			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()-32)))+Math.abs((lorann.getY()-(mobile.getY()+32)))){
 				PlusRapide = Math.abs((lorann.getX()-(mobile.getX()-32)))+Math.abs((lorann.getY()-(mobile.getY()+32)));
 				mobile.setDir("BASGAUCHE");
 			}
 		}
 		if(! MonsterCollision("BASDROITE",mobile)){
-			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()+32)))+Math.abs((lorann.getY()-(mobile.getY()+32))) /*&& ! MonsterCollision("BASDROITE",mobile)*/){
+			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()+32)))+Math.abs((lorann.getY()-(mobile.getY()+32)))){
 				PlusRapide = Math.abs((lorann.getX()-(mobile.getX()+32)))+Math.abs((lorann.getY()-(mobile.getY()+32)));
 				mobile.setDir("BASDROITE");
 			}
@@ -1127,6 +1284,5 @@ public class GameBoard extends JPanel implements KeyListener {
 
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
-
 	}
 }

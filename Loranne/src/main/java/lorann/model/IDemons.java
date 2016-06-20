@@ -23,4 +23,5 @@ public interface IDemons {
 	void getX();
 	
 	void getY();
+	
 }
