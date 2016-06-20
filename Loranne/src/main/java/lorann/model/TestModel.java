@@ -25,17 +25,17 @@ public class TestModel extends TestCase {
 	}
 
 	public void testDemon1(){
-		new Demon1(0, 0);
+		new Monster1(0, 0);
 	}
 
 	public void testDemon2(){
-		new Demon2(0, 0);
+		new Monster2(0, 0);
 	}
 	public void testDemon3(){
-		new Demon3(0, 0);
+		new Monster3(0, 0);
 	}
 	public void testDemon4(){
-		new Demon4(0, 0);
+		new Monster4(0, 0);
 	}
 	public void testBone1(){
 		new Bone1(0, 0);
@@ -47,10 +47,10 @@ public class TestModel extends TestCase {
 		new Bone3(0, 0);
 	}
 	public void testBourses(){
-		new Bourses(0, 0);
+		new Purses(0, 0);
 	}
 	public void testBulles(){
-		new Bulle(0, 0);
+		new CrystalBall(0, 0);
 	}
 	public void testLorann(){
 		new Lorann(0, 0);
@@ -59,16 +59,16 @@ public class TestModel extends TestCase {
 		new Mobile();
 	}
 	public void testMur(){
-		new Murs();
+		new Walls();
 	}
 	public void testNonMobileFranchissable(){
-		new NonMobileFranchissable();
+		new NoCross();
 	}
 	public void testPorte_Sortie(){
-		new Porte_sortie(0, 0);
+		new OutDoor(0, 0);
 	}
 	public void testSortileges(){
-		new Sortileges(0, 0);
+		new FireBall(0, 0);
 	}
 	
 }

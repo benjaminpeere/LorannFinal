@@ -10,7 +10,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class Bone3 extends Murs{
+public class Bone3 extends Walls{
 	
 	Image bone3;
 	/**

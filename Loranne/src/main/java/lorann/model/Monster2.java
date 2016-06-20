@@ -2,7 +2,6 @@ package lorann.model;
 
 import java.awt.Image;
 
-
 import javax.swing.ImageIcon;
 /**
  * |##############################################|
@@ -10,9 +9,9 @@ import javax.swing.ImageIcon;
  * |@they are four demons for kill Lorann	  	  |
  * |##############################################| 
  */
-public class Demon3 extends Mobile{
+public class Monster2 extends Mobile{
 
-	Image Demon3;
+	Image Monster2;
 	/**
 	 * |#################|
 	 * |constructor demon|
@@ -20,23 +19,21 @@ public class Demon3 extends Mobile{
 	 * |@param Starty	 |
 	 * |#################| 
 	 */
-	public Demon3(int Startx, int Starty){
-
+	public Monster2(int Startx, int Starty){
+		
 		x = Startx;
 		y = Starty;
 		
-		ImageIcon iDemon3 = new ImageIcon("Images/monster_3.png");
-		Demon3 = iDemon3.getImage();
-		
+		ImageIcon iMonster2 = new ImageIcon("Images/monster_2.png");
+		Monster2 = iMonster2.getImage();
 	}
 	/**
 	 * |##########################|
 	 * |define an image for demon |
-	 * |@return Demon3		  	  |
+	 * |@return Demon2		  	  |
 	 * |##########################| 
 	 */
 	public Image getImage(){
-		return Demon3;
+		return Monster2;
 	}
-	
 }

@@ -9,8 +9,8 @@ package lorann.model;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-public class Bourses extends NonMobileFranchissable{
-	Image Bourses;
+public class Purses extends NoCross{
+	Image Purses;
 	/**
 	 * |##################|
 	 * |constructor Purses|
@@ -18,12 +18,12 @@ public class Bourses extends NonMobileFranchissable{
 	 * |@param Starty	  |
 	 * |##################| 
 	 */	
-	public Bourses(int Startx, int Starty){
+	public Purses(int Startx, int Starty){
 		x = Startx;
 		y = Starty;
 		
-		ImageIcon iBourses = new ImageIcon("Images/purse.png");
-		Bourses = iBourses.getImage();
+		ImageIcon iPurses = new ImageIcon("Images/purse.png");
+		Purses = iPurses.getImage();
 	}
 	/**
 	 * |##########################|
@@ -32,7 +32,7 @@ public class Bourses extends NonMobileFranchissable{
 	 * |##########################| 
  */
 	public Image getImage(){
-		return Bourses;
+		return Purses;
 	}
 
 }

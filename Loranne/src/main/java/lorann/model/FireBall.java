@@ -10,19 +10,19 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class Sortileges extends Mobile{
+public class FireBall extends Mobile{
 
-	Image Sortileges;
+	Image Fireball;
 
-	public Sortileges(int Startx, int Starty){
+	public FireBall(int Startx, int Starty){
 		x = Startx;
 		y = Starty;
 
-		ImageIcon iSortileges = new ImageIcon("Images/fireball_1.png");
-		Sortileges = iSortileges.getImage();
+		ImageIcon iFireball = new ImageIcon("Images/fireball_1.png");
+		Fireball = iFireball.getImage();
 	}
 
 	public Image getImage(){
-		return Sortileges;
+		return Fireball;
 	}
 }

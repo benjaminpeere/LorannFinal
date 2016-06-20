@@ -10,7 +10,7 @@ public class Mobile {
 
 
 	public int x,y;
-	public String direction = "BAS";
+	public String direction = "DOWN";
 	/**
 	 * |########################################|
 	 * | define the hitbox						|
@@ -52,28 +52,28 @@ public class Mobile {
 	 */
 	public void move() {
 		switch (this.getDir()) {
-			case "HAUT":
+			case "UP":
 				this.moveUp();
 				break;
-			case "DROITE":
+			case "RIGHT":
 				this.moveRight();
 				break;
-			case "BAS":
+			case "DOWN":
 				this.moveDown();
 				break;
-			case "GAUCHE":
+			case "LEFT":
 				this.moveLeft();
 				break;
-			case "HAUTGAUCHE":
+			case "UPLEFT":
 				this.moveUpLeft();
 				break;
-			case "BASGAUCHE":
+			case "DOWNLEFT":
 				this.moveDownLeft();
 				break;
-			case "HAUTDROITE":
+			case "UPRIGHT":
 				this.moveUpRight();
 				break;
-			case "BASDROITE":
+			case "DOWNRIGHT":
 				this.moveDownRight();
 				break;
 			default:

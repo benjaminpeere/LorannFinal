@@ -2,7 +2,7 @@ package lorann.model;
 
 import java.awt.Rectangle;
 
-public class NonMobileFranchissable {
+public class NoCross {
 	/**
 	* |##########################################|
 	* | define the hitbox of noMobile entity	 |

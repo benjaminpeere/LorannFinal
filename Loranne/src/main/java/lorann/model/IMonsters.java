@@ -1,6 +1,6 @@
 package lorann.model;
 
-public interface IDemons {
+public interface IMonsters {
 	public void move();
 	
 

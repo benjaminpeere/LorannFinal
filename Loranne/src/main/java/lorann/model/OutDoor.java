@@ -5,20 +5,20 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
-public class Porte_sortie {
+public class OutDoor {
 
 	int x,y;
 
-	Image Porte;
+	Image Door;
 	/**
 	 * |######################################|
 	 * |define the door's state and her image |
 	 * |######################################| 
 	 
 	 */
-	String Etat = "FERME";
-	ImageIcon iPorte = new ImageIcon("Images/gate_closed.png");
-	ImageIcon iPorteSortieOuverte = new ImageIcon("Images/gate_open.png");
+	String State = "CLOSED";
+	ImageIcon iDoor = new ImageIcon("Images/gate_closed.png");
+	ImageIcon iDoorOpen = new ImageIcon("Images/gate_open.png");
 
 	/**
 	 * |#################|
@@ -27,7 +27,7 @@ public class Porte_sortie {
 	 * |@param Starty	 |
 	 * |#################| 
 	 */
-	public Porte_sortie (int Startx, int Starty){
+	public OutDoor (int Startx, int Starty){
 		x = Startx;
 		y = Starty;
 
@@ -63,11 +63,11 @@ public class Porte_sortie {
 	 * @return
 	 */
 	public String getEtat() {
-		return Etat;
+		return State;
 	}
 
-	public void setEtat (String newEtat){
-		this.Etat = newEtat;
+	public void setEtat (String newState){
+		this.State = newState;
 	}
 	/**
  * |##########################|
@@ -76,13 +76,13 @@ public class Porte_sortie {
  * |##########################|
 	 */
 	public Image getImage(){
-		if(Etat == "FERME"){
-			Porte = iPorte.getImage();
+		if(State == "CLOSED"){
+			Door = iDoor.getImage();
 		}
-		else if (Etat == "OUVERT"){
-			Porte = iPorteSortieOuverte.getImage();
+		else if (State == "OPEN"){
+			Door = iDoorOpen.getImage();
 		}
-		return Porte;
+		return Door;
 
 	}
 }

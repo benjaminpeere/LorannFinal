@@ -8,7 +8,7 @@ import java.awt.Rectangle;
 * |######################|
 */
 
-public class Murs {
+public class Walls {
 
 int x,y;
 	

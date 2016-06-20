@@ -9,8 +9,8 @@ import javax.swing.ImageIcon;
  * |Lorran should pick him to open the door	  	  |
  * |##############################################| 
  */
-public class Bulle extends NonMobileFranchissable{
-	Image Bulle;
+public class CrystalBall extends NoCross{
+	Image CrystalBall;
 	/**
 	 * |#####################|
 	 * |constructor magicball|
@@ -18,12 +18,12 @@ public class Bulle extends NonMobileFranchissable{
 	 * |@param Starty	 	 |
 	 * |#####################| 
  */	
-	public Bulle(int Startx, int Starty ){
+	public CrystalBall(int Startx, int Starty ){
 		x = Startx;
 		y = Starty;
 		
-		ImageIcon iBulle = new ImageIcon("Images/crystal_ball.png");
-		Bulle = iBulle.getImage();
+		ImageIcon iCrystalBall = new ImageIcon("Images/crystal_ball.png");
+		CrystalBall = iCrystalBall.getImage();
 	}
 	/**
 	 * |##################################|
@@ -32,6 +32,6 @@ public class Bulle extends NonMobileFranchissable{
 	 * |##################################| 
 	 */	
 	public Image getImage(){
-		return Bulle;
+		return CrystalBall;
 	}
 }
