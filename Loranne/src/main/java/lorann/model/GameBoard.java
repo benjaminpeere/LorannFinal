@@ -203,6 +203,7 @@ public class GameBoard extends JPanel implements KeyListener {
 		int x=0;
 		int y = 0;
 		Sortilegess = new ArrayList<Sortileges>();
+		
 		if (Touche == KeyEvent.VK_S || Touche == KeyEvent.VK_DOWN){
 			if (! CheckCollision("BAS")){
 				if (! MonsterEat(demon1)){
@@ -369,8 +370,6 @@ public class GameBoard extends JPanel implements KeyListener {
 			sortileges = new Sortileges(x*32, y*32);
 			Sortilegess.add(sortileges);
 			Shoot();
-			
-
 		}
 
 		else if (Touche == KeyEvent.VK_R){
@@ -659,13 +658,15 @@ public class GameBoard extends JPanel implements KeyListener {
 			if(mobileRec.intersects(demon2Rec)){
 				return true;
 			}
-		}for(int i=0;i<Demons3.size();i++){
+		}
+		for(int i=0;i<Demons3.size();i++){
 			demon3 = (Demon3) Demons3.get(i);
 			Rectangle demon3Rec = demon3.getBounds();
 			if(mobileRec.intersects(demon3Rec)){
 				return true;
 			}
-		}for(int i=0;i<Demons4.size();i++){
+		}
+		for(int i=0;i<Demons4.size();i++){
 			demon4 = (Demon4) Demons4.get(i);
 			Rectangle demon4Rec = demon4.getBounds();
 			if(mobileRec.intersects(demon4Rec)){
@@ -674,6 +675,8 @@ public class GameBoard extends JPanel implements KeyListener {
 		}
 		return false;
 	}
+	
+
 
 	public void pathToLorann1(Mobile mobile){
 
