@@ -225,6 +225,7 @@ public class GameBoard extends JPanel implements KeyListener {
 		int Touche = arg0.getKeyCode();
 		int x=0;
 		int y = 0;
+		int space = 1;
 		Sortilegess = new ArrayList<Sortileges>();
 		
 		if (Touche == KeyEvent.VK_S || Touche == KeyEvent.VK_DOWN){
@@ -426,6 +427,12 @@ public class GameBoard extends JPanel implements KeyListener {
 			sortileges = new Sortileges(x*32, y*32);
 			Sortilegess.add(sortileges);
 			Shoot();
+			space++;
+		}
+		
+		else if (Touche == KeyEvent.VK_BACK_SPACE)
+		{
+			toucher = true;
 		}
 
 		else if (Touche == KeyEvent.VK_R){
