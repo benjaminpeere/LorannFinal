@@ -383,49 +383,59 @@ public class GameBoard extends JPanel implements KeyListener {
 		}
 		repaint();
 	}
-	public void Shoot(){
+	
+	public boolean Shoot(){
+		
+		
 		if(lorann.getDir() == "BAS"){
 			sortileges.setY(lorann.getY() + 32 );
 			sortileges.setX(lorann.getX());
-			
-			
+			return true;
 		}
 		else if(lorann.getDir() == "HAUT"){
 			sortileges.setY(lorann.getY()-32 );
 			sortileges.setX(lorann.getX());
+			return true;
 			
 		}
 		else if(lorann.getDir() == "GAUCHE"){
 			sortileges.setY(lorann.getY());
 			sortileges.setX(lorann.getX()-32);
+			return true;
 		
 		}
 		else if(lorann.getDir() == "DROITE"){
 			sortileges.setY(lorann.getY());
-			sortileges.setX(lorann.getX()+32);
-			
-			
+			sortileges.setX(lorann.getX()+32);	
+			return true;
 		}
-		
-		
+		return false;
 	}
-	public void FollowShoot(){
-		if (lorann.getX()<sortileges.getX()){
-			sortileges.setX(sortileges.getX()+32);
-		}
-		else if (lorann.getX()>sortileges.getX()){
-			sortileges.setX(sortileges.getX()-32);
-		}
-		else if (lorann.getY()>sortileges.getY()){
-			sortileges.setY(sortileges.getY()-32);
-		}
-		else if (lorann.getY()<sortileges.getY()){
-			sortileges.setY(sortileges.getY()+32);
-		}
-		
-			
-		
 	
+	public void FollowShoot(){
+
+		if (!Shoot()){
+
+			if (lorann.getX() < sortileges.getX()){
+				sortileges.setDir("DROITE");
+				sortileges.move();
+			}
+			else if (lorann.getX() > sortileges.getX()){
+				sortileges.setDir("GAUCHE");
+				sortileges.move();
+
+			}
+			else if (lorann.getY() > sortileges.getY()){
+				sortileges.setDir("HAUT");
+				sortileges.move();
+
+			}
+			else if (lorann.getY() < sortileges.getY()){
+				sortileges.setDir("BAS");
+				sortileges.move();
+
+			}
+		}
 	}
 
 	public boolean CheckCollision(String direction){
