@@ -1,7 +1,12 @@
 package lorann.model;
 
 import java.awt.Rectangle;
-
+/**
+* |######################|
+* | define the hitbox	 |
+* | @return Box 		 |
+* |######################|
+*/
 
 public class Murs {
 

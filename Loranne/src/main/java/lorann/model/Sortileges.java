@@ -1,5 +1,10 @@
 package lorann.model;
-
+/**
+ * |######################################|
+ * |the Fireball is the Lorann's weapon	  |
+ * |she can kill the differents demons	  |
+ * |######################################| 
+ */
 import java.awt.Image;
 
 

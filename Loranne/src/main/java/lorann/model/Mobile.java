@@ -1,13 +1,22 @@
 package lorann.model;
 
 import java.awt.Rectangle;
-
+/**
+ * |##########################################################|
+ * |this class define the differents movement feasible		  |
+ * |##########################################################|
+ */
 public class Mobile {
 
 
 	public int x,y;
 	public String direction = "BAS";
-
+	/**
+	 * |########################################|
+	 * | define the hitbox						|
+	 * | @return Box							|
+	 * |########################################|
+	 */
 	public Rectangle getBounds(){ //pour les collision
 		Rectangle Box = new Rectangle(x,y,32,32);
 		return Box;
@@ -36,7 +45,11 @@ public class Mobile {
 	public void setDir(String direction) {
 		this.direction = direction;
 	}
-
+	/**
+	 * |########################################|
+	 * | define the differents orientation		|
+	 * |########################################|
+	 */
 	public void move() {
 		switch (this.getDir()) {
 			case "HAUT":
@@ -68,7 +81,11 @@ public class Mobile {
 		}
 	}
 	
-
+	/**
+	 * |########################################|
+	 * | define the different movement			|
+	 * |########################################|
+	 */
 	void moveUp() {
 		this.setY(getY() - 32 );
 	}

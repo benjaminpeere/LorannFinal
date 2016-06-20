@@ -1,7 +1,9 @@
 package lorann.model;
-
-
-
+/**
+ * |##################################|
+ * |unit test of the different class  |
+ * |##################################| 
+ */
 import org.junit.Test;
 
 import junit.framework.TestCase;
