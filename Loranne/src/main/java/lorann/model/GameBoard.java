@@ -24,6 +24,7 @@ public class GameBoard extends JPanel implements KeyListener {
 	int level = 1;
 	int gold = 0;
 	int lifes = 11;
+	
 	boolean shoot = false;
 	boolean touch = false;
 	boolean prisond1 = false;
@@ -67,7 +68,7 @@ public class GameBoard extends JPanel implements KeyListener {
 
 	protected void ChangeLevel() {
 		try{
-			fr = new FileReader("Maps/level1.level");
+			fr = new FileReader("Maps/level"+level+".level");
 			int x=0, y=0, i=0;
 			touch = false;
 			shoot = false;
@@ -746,51 +747,9 @@ public class GameBoard extends JPanel implements KeyListener {
 			Rectangle boursesRec = purses.getBounds();
 
 			if(lorannRec.intersects(boursesRec)){
-				switch (lorann.getDir()){
-
-				case "DOWN":
-					Pursess.remove(i);
-					gold = gold + 100;
-					break;
-
-				case "UP" :
-					Pursess.remove(i);
-					gold = gold + 100;
-					break;
-
-				case "LEFT":
-					Pursess.remove(i);
-					gold = gold + 100;
-					break;
-
-				case "RIGHT":
-					Pursess.remove(i);
-					gold = gold + 100;
-					break;
-
-				case "UPRIGHT" : 
-					Pursess.remove(i);
-					gold = gold + 100;
-					break;
-
-				case "UPLEFT" :
-					Pursess.remove(i);
-					gold = gold + 100;
-					break;
-
-				case "DOWNRIGHT" : 
-					Pursess.remove(i);
-					gold = gold + 100;
-					break;
-
-				case "DOWNLEFT" :
-					Pursess.remove(i);
-					gold = gold + 100;
-					break;
-
-				default :
-					break;
-				}
+				Pursess.remove(i);
+				gold = gold + 100;
+				break;
 			}
 		}
 
@@ -799,7 +758,7 @@ public class GameBoard extends JPanel implements KeyListener {
 			Rectangle objectifRec = crystalball.getBounds();
 			if (lorannRec.intersects(objectifRec)){
 				CrystalBalls.remove(i);
-				outdoor.setEtat("OUVERT");
+				outdoor.setEtat("OPEN");
 			}
 		}
 
@@ -808,7 +767,8 @@ public class GameBoard extends JPanel implements KeyListener {
 			Rectangle ouvertRec = outdoor.getBounds();
 
 			if(lorannRec.intersects(ouvertRec)){
-				if (outdoor.getEtat() == "FERME")
+				level++;
+				if (outdoor.getEtat() == "CLOSED")
 					lifes--;
 				ChangeLevel();
 			}
