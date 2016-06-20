@@ -20,7 +20,7 @@ public class GameBoard extends JPanel implements KeyListener {
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	String Game[][] = new String [24][12];
+	String Game[][] = new String [24][24];
 	int level = 1;
 	int or = 0;
 	int vies = 11;
@@ -182,23 +182,23 @@ public class GameBoard extends JPanel implements KeyListener {
 		}
 		for(int i = 0; i< Demons1.size(); i++){
 			demon1 = (Demon1) Demons1.get(i);
-			g2d.drawImage(demon1.getImage(), demon1.getX(), demon1.getY(), null);
+			g2d.drawImage(demon1.getImage(), demon1.getX(),demon1.getY(), null);
 		}
 		for(int i = 0; i< Demons2.size(); i++){
 			demon2 = (Demon2) Demons2.get(i);
-			g2d.drawImage(demon2.getImage(), demon2.getX(), demon2.getY(), null);
+			g2d.drawImage(demon2.getImage(), demon2.getX(),demon2.getY(), null);
 		}
 		for(int i = 0; i< Demons3.size(); i++){
 			demon3 = (Demon3) Demons3.get(i);
-			g2d.drawImage(demon3.getImage(), demon3.getX(), demon3.getY(), null);
+			g2d.drawImage(demon3.getImage(), demon3.getX(),demon3.getY(), null);
 		}
 		for(int i = 0; i< Demons4.size(); i++){
 			demon4 = (Demon4) Demons4.get(i);
-			g2d.drawImage(demon4.getImage(), demon4.getX(), demon4.getY(), null);
+			g2d.drawImage(demon4.getImage(), demon4.getX(),demon4.getY(), null);
 		}
 
 		try{
-			g2d.drawImage(lorann.getImage(), lorann.getX(), lorann.getY(), null);	
+			g2d.drawImage(lorann.getImage(), lorann.getX(), lorann.getY(), null);
 			g2d.drawImage(portesortie.getImage(), portesortie.getX(), portesortie.getY(), null);
 			g2d.drawImage(sortileges.getImage(), sortileges.getX(), sortileges.getY(), null);
 		}
@@ -427,22 +427,25 @@ public class GameBoard extends JPanel implements KeyListener {
 
 			if (lorann.getX() < sortileges.getX()){
 				sortileges.setDir("DROITE");
-				sortileges.move();
+				if (CheckSortileges("DROITE") == false)
+					sortileges.move();
 			}
 			else if (lorann.getX() > sortileges.getX()){
 				sortileges.setDir("GAUCHE");
-				sortileges.move();
+				if (CheckSortileges("GAUCHE") == false)
+					sortileges.move();
 
 			}
 			else if (lorann.getY() > sortileges.getY()){
 				sortileges.setDir("HAUT");
-				sortileges.move();
+				if (CheckSortileges("HAUT") == false)
+					sortileges.move();
 
 			}
 			else if (lorann.getY() < sortileges.getY()){
 				sortileges.setDir("BAS");
-				sortileges.move();
-
+				if (CheckSortileges("BAS") == false)
+					sortileges.move();
 			}
 		}
 	}
@@ -688,7 +691,93 @@ public class GameBoard extends JPanel implements KeyListener {
 		return false;
 	}
 	
-
+	public boolean CheckSortileges(String direction){
+		
+		if (shoot == true){
+		Rectangle sortilegesRec;
+		sortilegesRec = sortileges.getBounds();
+		
+		if (direction == "DROITE"){
+			sortilegesRec.setBounds(sortilegesRec.x +32,sortilegesRec.y, sortilegesRec.width, sortilegesRec.height);
+		}
+		else if (direction == "GAUCHE"){
+			sortilegesRec.setBounds(sortilegesRec.x -32, sortilegesRec.y, sortilegesRec.width, sortilegesRec.height);
+		}
+		else if (direction == "HAUT"){
+			sortilegesRec.setBounds(sortilegesRec.x,sortilegesRec.y -32, sortilegesRec.width, sortilegesRec.height);
+		}
+		else if (direction == "BAS"){
+			sortilegesRec.setBounds(sortilegesRec.x ,sortilegesRec.y +32, sortilegesRec.width, sortilegesRec.height);
+		}
+		else if (direction == "BASGAUCHE"){
+			sortilegesRec.setBounds(sortilegesRec.x - 32 ,sortilegesRec.y +32, sortilegesRec.width, sortilegesRec.height);
+		}
+		else if (direction == "BASDROITE"){
+			sortilegesRec.setBounds(sortilegesRec.x + 32,sortilegesRec.y +32, sortilegesRec.width, sortilegesRec.height);
+		}
+		else if (direction == "HAUTGAUCHE"){
+			sortilegesRec.setBounds(sortilegesRec.x - 32,sortilegesRec.y - 32, sortilegesRec.width, sortilegesRec.height);
+		}
+		else if (direction == "HAUTDROITE"){
+			sortilegesRec.setBounds(sortilegesRec.x + 32,sortilegesRec.y - 32, sortilegesRec.width, sortilegesRec.height);
+		}
+		
+		for(int i=0;i<Bones1.size();i++){
+			bone1 = (Bone1) Bones1.get(i);
+			Rectangle bone1Rec = bone1.getBounds();
+			if(sortilegesRec.intersects(bone1Rec)){
+				return true;
+			}
+		}
+		for(int i=0;i<Bones2.size();i++){
+			bone2 = (Bone2) Bones2.get(i);
+			Rectangle bone2Rec = bone2.getBounds();
+			if(sortilegesRec.intersects(bone2Rec)){
+				return true;
+			}
+		}
+		for(int i=0;i<Bones3.size();i++){
+			bone3 = (Bone3) Bones3.get(i);
+			Rectangle bone3Rec = bone3.getBounds();
+			if(sortilegesRec.intersects(bone3Rec)){
+				return true;
+			}
+		}
+		for(int i=0;i<Demons1.size();i++){
+			demon1 = (Demon1) Demons1.get(i);
+			Rectangle demon1Rec = demon1.getBounds();
+			if(sortilegesRec.intersects(demon1Rec)){
+				Demons1.remove(i);
+				return true;
+			}
+		}
+		for(int i=0;i<Demons2.size();i++){
+			demon2 = (Demon2) Demons2.get(i);
+			Rectangle demon2Rec = demon2.getBounds();
+			if(sortilegesRec.intersects(demon2Rec)){
+				Demons2.remove(i);
+				return true;
+			}
+		}
+		for(int i=0;i<Demons3.size();i++){
+			demon3 = (Demon3) Demons3.get(i);
+			Rectangle demon3Rec = demon3.getBounds();
+			if(sortilegesRec.intersects(demon3Rec)){
+				Demons3.remove(i);
+				return true;
+			}
+		}
+		for(int i=0;i<Demons4.size();i++){
+			demon4 = (Demon4) Demons4.get(i);
+			Rectangle demon4Rec = demon4.getBounds();
+			if(sortilegesRec.intersects(demon4Rec)){
+				Demons4.remove(i);
+				return true;
+			}
+		}
+		}
+		return false;
+	}
 
 	public void pathToLorann1(Mobile mobile){
 
