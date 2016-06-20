@@ -34,7 +34,7 @@ public class GameBoard extends JPanel implements KeyListener {
 	private static ArrayList<Demon3> Demons3;
 	private static ArrayList<Demon4> Demons4;
 	private static ArrayList<Porte_sortie> PorteSorties;
-
+	private static ArrayList<Sortileges> Sortilegess;
 
 	Bone1 bone1;
 	Bone2 bone2;
@@ -47,6 +47,7 @@ public class GameBoard extends JPanel implements KeyListener {
 	Demon3 demon3;
 	Demon4 demon4;
 	Porte_sortie portesortie;
+	Sortileges sortileges;
 	Font levelFont = new Font("SansSerif", Font.BOLD, 30);
 	FileReader fr;
 
@@ -185,6 +186,7 @@ public class GameBoard extends JPanel implements KeyListener {
 			g2d.drawImage(demon3.getImage(), demon3.getX(), demon3.getY(), null);
 			g2d.drawImage(demon4.getImage(), demon4.getX(), demon4.getY(), null);
 			g2d.drawImage(portesortie.getImage(), portesortie.getX(), portesortie.getY(), null);
+			g2d.drawImage(sortileges.getImage(), sortileges.getX(), sortileges.getY(), null);
 		}
 		catch(Exception ex){}
 		g.setColor(Color.RED);
@@ -196,7 +198,9 @@ public class GameBoard extends JPanel implements KeyListener {
 
 	public void keyPressed(KeyEvent arg0) {
 		int Touche = arg0.getKeyCode();
-
+		int x=0;
+		int y = 0;
+		Sortilegess = new ArrayList<Sortileges>();
 		if (Touche == KeyEvent.VK_S || Touche == KeyEvent.VK_DOWN){
 			if (! CheckCollision("BAS")){
 				if (! MonsterEat(demon1)){
@@ -206,6 +210,7 @@ public class GameBoard extends JPanel implements KeyListener {
 								lorann.setDir("BAS");
 								lorann.move();
 								Objectif();
+								FollowShoot();
 							}
 						}
 					}
@@ -225,6 +230,7 @@ public class GameBoard extends JPanel implements KeyListener {
 								lorann.setDir("HAUT");
 								lorann.move();
 								Objectif();
+								FollowShoot();
 							}
 						}
 					}
@@ -244,6 +250,7 @@ public class GameBoard extends JPanel implements KeyListener {
 								lorann.setDir("DROITE");
 								lorann.move();
 								Objectif();
+								FollowShoot();
 							}
 						}
 					}
@@ -263,6 +270,7 @@ public class GameBoard extends JPanel implements KeyListener {
 								lorann.setDir("GAUCHE");
 								lorann.move();
 								Objectif();
+								FollowShoot();
 							}
 						}
 					}
@@ -282,6 +290,7 @@ public class GameBoard extends JPanel implements KeyListener {
 								lorann.setDir("HAUTGAUCHE");
 								lorann.move();
 								Objectif();
+								FollowShoot();
 							}
 						}
 					}
@@ -301,6 +310,7 @@ public class GameBoard extends JPanel implements KeyListener {
 								lorann.setDir("HAUTDROITE");
 								lorann.move();
 								Objectif();
+								FollowShoot();
 							}
 						}
 					}
@@ -320,6 +330,7 @@ public class GameBoard extends JPanel implements KeyListener {
 								lorann.setDir("BASGAUCHE");
 								lorann.move();
 								Objectif();
+								FollowShoot();
 							}
 						}
 					}
@@ -339,6 +350,7 @@ public class GameBoard extends JPanel implements KeyListener {
 								lorann.setDir("BASDROITE");
 								lorann.move();
 								Objectif();
+								FollowShoot();
 							}
 						}
 					}
@@ -348,6 +360,14 @@ public class GameBoard extends JPanel implements KeyListener {
 			pathToLorann2(demon2);
 			pathToLorann3(demon3);
 			pathToLorann4(demon4);
+		}
+		else if (Touche == KeyEvent.VK_SPACE){
+
+			sortileges = new Sortileges(x*32, y*32);
+			Sortilegess.add(sortileges);
+			Shoot();
+			
+
 		}
 
 		else if (Touche == KeyEvent.VK_R){
@@ -363,7 +383,50 @@ public class GameBoard extends JPanel implements KeyListener {
 		}
 		repaint();
 	}
-
+	public void Shoot(){
+		if(lorann.getDir() == "BAS"){
+			sortileges.setY(lorann.getY() + 32 );
+			sortileges.setX(lorann.getX());
+			
+			
+		}
+		else if(lorann.getDir() == "HAUT"){
+			sortileges.setY(lorann.getY()-32 );
+			sortileges.setX(lorann.getX());
+			
+		}
+		else if(lorann.getDir() == "GAUCHE"){
+			sortileges.setY(lorann.getY());
+			sortileges.setX(lorann.getX()-32);
+		
+		}
+		else if(lorann.getDir() == "DROITE"){
+			sortileges.setY(lorann.getY());
+			sortileges.setX(lorann.getX()+32);
+			
+			
+		}
+		
+		
+	}
+	public void FollowShoot(){
+		if (lorann.getX()<sortileges.getX()){
+			sortileges.setX(sortileges.getX()+32);
+		}
+		else if (lorann.getX()>sortileges.getX()){
+			sortileges.setX(sortileges.getX()-32);
+		}
+		else if (lorann.getY()>sortileges.getY()){
+			sortileges.setY(sortileges.getY()-32);
+		}
+		else if (lorann.getY()<sortileges.getY()){
+			sortileges.setY(sortileges.getY()+32);
+		}
+		
+			
+		
+	
+	}
 
 	public boolean CheckCollision(String direction){
 		Rectangle lorannRec;
