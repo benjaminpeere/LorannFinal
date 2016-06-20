@@ -180,13 +180,25 @@ public class GameBoard extends JPanel implements KeyListener {
 			bourses = (Bourses) Boursess.get(i);
 			g2d.drawImage(bourses.getImage(), bourses.getX(),bourses.getY(), null);
 		}
+		for(int i = 0; i< Demons1.size(); i++){
+			demon1 = (Demon1) Demons1.get(i);
+			g2d.drawImage(demon1.getImage(), demon1.getX(), demon1.getY(), null);
+		}
+		for(int i = 0; i< Demons2.size(); i++){
+			demon2 = (Demon2) Demons2.get(i);
+			g2d.drawImage(demon2.getImage(), demon2.getX(), demon2.getY(), null);
+		}
+		for(int i = 0; i< Demons3.size(); i++){
+			demon3 = (Demon3) Demons3.get(i);
+			g2d.drawImage(demon3.getImage(), demon3.getX(), demon3.getY(), null);
+		}
+		for(int i = 0; i< Demons4.size(); i++){
+			demon4 = (Demon4) Demons4.get(i);
+			g2d.drawImage(demon4.getImage(), demon4.getX(), demon4.getY(), null);
+		}
 
 		try{
-			g2d.drawImage(lorann.getImage(), lorann.getX(), lorann.getY(), null);
-			g2d.drawImage(demon1.getImage(), demon1.getX(), demon1.getY(), null);
-			g2d.drawImage(demon2.getImage(), demon2.getX(), demon2.getY(), null);
-			g2d.drawImage(demon3.getImage(), demon3.getX(), demon3.getY(), null);
-			g2d.drawImage(demon4.getImage(), demon4.getX(), demon4.getY(), null);
+			g2d.drawImage(lorann.getImage(), lorann.getX(), lorann.getY(), null);	
 			g2d.drawImage(portesortie.getImage(), portesortie.getX(), portesortie.getY(), null);
 			g2d.drawImage(sortileges.getImage(), sortileges.getX(), sortileges.getY(), null);
 		}
