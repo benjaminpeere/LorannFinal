@@ -24,6 +24,8 @@ public class GameBoard extends JPanel implements KeyListener {
 	int level = 1;
 	int or = 0;
 	int vies = 11;
+	boolean shoot = false;
+	
 	private static ArrayList<Bone1> Bones1;
 	private static ArrayList<Bone2> Bones2;
 	private static ArrayList<Bone3> Bones3;
@@ -362,7 +364,8 @@ public class GameBoard extends JPanel implements KeyListener {
 			pathToLorann4(demon4);
 		}
 		else if (Touche == KeyEvent.VK_SPACE){
-
+			
+			shoot = true;
 			sortileges = new Sortileges(x*32, y*32);
 			Sortilegess.add(sortileges);
 			Shoot();
@@ -386,7 +389,7 @@ public class GameBoard extends JPanel implements KeyListener {
 	
 	public boolean Shoot(){
 		
-		
+		if (shoot == true){
 		if(lorann.getDir() == "BAS"){
 			sortileges.setY(lorann.getY() + 32 );
 			sortileges.setX(lorann.getX());
@@ -409,12 +412,14 @@ public class GameBoard extends JPanel implements KeyListener {
 			sortileges.setX(lorann.getX()+32);	
 			return true;
 		}
+		}
 		return false;
+		
 	}
 	
 	public void FollowShoot(){
 
-		if (!Shoot()){
+		if (shoot == true){
 
 			if (lorann.getX() < sortileges.getX()){
 				sortileges.setDir("DROITE");
