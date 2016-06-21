@@ -383,7 +383,7 @@ public class GameBoard extends JPanel implements KeyListener {
 					if (! MonsterEat(monster2)){
 						if (! MonsterEat(monster3)){
 							if (! MonsterEat(monster4)){
-								lorann.setDir("DONLEFT");
+								lorann.setDir("DOWNLEFT");
 								lorann.move();
 								Objectif();
 							}
