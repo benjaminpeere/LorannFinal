@@ -1,1 +1,24 @@
+package lorann.view;
 
+import java.io.File;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
+public class Sound {
+	public Sound(){
+		File Clap = new File("Music/SonLorann.wav");
+		PlaySound(Clap);
+	}
+	static void PlaySound(File Sound){
+		
+		try{
+			Clip clip = AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(Sound));
+			clip.start();
+			Thread.sleep(clip.getMicrosecondLength());
+		}catch(Exception e){
+			
+		}
+	}
+}
