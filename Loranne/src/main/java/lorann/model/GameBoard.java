@@ -222,7 +222,7 @@ public class GameBoard extends JPanel implements KeyListener {
 		catch(Exception ex){}
 		g.setColor(Color.RED);
 		g.setFont(levelFont);
-		g.drawString("LEVEL : " + level + " / Or : " + gold + " / Vie : " + lifes,240, 400);
+		g.drawString("LEVEL : " + level + " / Gold : " + gold + " / Lifes : " + lifes,240, 400);
 
 		repaint();
 	}
