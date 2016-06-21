@@ -502,10 +502,14 @@ public class GameBoard extends JPanel implements KeyListener {
 	}
 
 	public void FollowShoot(){
-
+		
+		
 		if (shoot == true){
+			if (fireball.StateFireBall > 4)
+				fireball.StateFireBall = 0;
 			if (fireball.getDir() == "RIGHT"){
 				if (CheckFireBall("RIGHT") == false && touch == false){
+					fireball.StateFireBall++;
 					fireball.move();
 				}
 				else {
@@ -514,6 +518,7 @@ public class GameBoard extends JPanel implements KeyListener {
 
 				if (touch == true){
 					CheckFireBall(fireball.getDir());
+					fireball.StateFireBall++;
 					pathToLorann1(fireball);
 					FireBallRemove();
 				}
@@ -521,6 +526,7 @@ public class GameBoard extends JPanel implements KeyListener {
 			else if (fireball.getDir() == "LEFT"){
 
 				if (CheckFireBall("LEFT") == false && touch == false){
+					fireball.StateFireBall++;
 					fireball.move();
 				}
 				else {
@@ -529,12 +535,14 @@ public class GameBoard extends JPanel implements KeyListener {
 
 				if (touch == true){
 					CheckFireBall(fireball.getDir());
+					fireball.StateFireBall++;
 					pathToLorann1(fireball);
 					FireBallRemove();
 				}
 			}
 			else if (fireball.getDir() == "UP"){
 				if (CheckFireBall("UP") == false && touch == false){
+					fireball.StateFireBall++;
 					fireball.move();
 				}
 				else {
@@ -543,6 +551,7 @@ public class GameBoard extends JPanel implements KeyListener {
 
 				if (touch == true){
 					CheckFireBall(fireball.getDir());
+					fireball.StateFireBall++;
 					pathToLorann1(fireball);
 					FireBallRemove();
 				}
@@ -550,6 +559,7 @@ public class GameBoard extends JPanel implements KeyListener {
 			}
 			else if (fireball.getDir() == "DOWN"){
 				if (CheckFireBall("DOWN") == false && touch == false){
+					fireball.StateFireBall++;
 					fireball.move();
 				}
 				else {
@@ -558,12 +568,14 @@ public class GameBoard extends JPanel implements KeyListener {
 
 				if (touch == true){
 					CheckFireBall(fireball.getDir());
+					fireball.StateFireBall++;
 					pathToLorann1(fireball);
 					FireBallRemove();
 				}
 			}
 			else if (fireball.getDir() == "DOWNLEFT"){
 				if (CheckFireBall("DOWNLEFT") == false && touch == false){
+					fireball.StateFireBall++;
 					fireball.move();
 				}
 				else {
@@ -572,12 +584,14 @@ public class GameBoard extends JPanel implements KeyListener {
 
 				if (touch == true){
 					CheckFireBall(fireball.getDir());
+					fireball.StateFireBall++;
 					pathToLorann1(fireball);
 					FireBallRemove();
 				}
 			}
 			else if (fireball.getDir() == "DOWNRIGHT"){
 				if (CheckFireBall("DOWNRIGHT") == false && touch == false){
+					fireball.StateFireBall++;
 					fireball.move();
 				}
 				else {
@@ -586,12 +600,14 @@ public class GameBoard extends JPanel implements KeyListener {
 
 				if (touch == true){
 					CheckFireBall(fireball.getDir());
+					fireball.StateFireBall++;
 					pathToLorann1(fireball);
 					FireBallRemove();
 				}
 			}
 			else if (fireball.getDir() == "UPRIGHT"){
 				if (CheckFireBall("UPRIGHT") == false && touch == false){
+					fireball.StateFireBall++;
 					fireball.move();
 				}
 				else {
@@ -600,12 +616,14 @@ public class GameBoard extends JPanel implements KeyListener {
 
 				if (touch == true){
 					CheckFireBall(fireball.getDir());
+					fireball.StateFireBall++;
 					pathToLorann1(fireball);
 					FireBallRemove();
 				}
 			}
 			else if (fireball.getDir() == "UPLEFT"){
 				if (CheckFireBall("UPLEFT") == false && touch == false){
+					fireball.StateFireBall++;
 					fireball.move();
 				}
 				else {
@@ -614,6 +632,7 @@ public class GameBoard extends JPanel implements KeyListener {
 
 				if (touch == true){
 					CheckFireBall(fireball.getDir());
+					fireball.StateFireBall++;
 					pathToLorann1(fireball);
 					FireBallRemove();
 				}
@@ -1030,25 +1049,25 @@ public class GameBoard extends JPanel implements KeyListener {
 		PlusRapide = 1500;
 
 		if (! MonsterCollision("UPLEFT",mobile)){
-			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()-32)))+Math.abs((lorann.getY()-(mobile.getY()-32))) /*&& ! MonsterCollision("UPLEFT",mobile)*/){
+			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()-32)))+Math.abs((lorann.getY()-(mobile.getY()-32)))){
 				PlusRapide = Math.abs((lorann.getX()-(mobile.getX()-32)))+Math.abs((lorann.getY()-(mobile.getY()-32)));
 				mobile.setDir("UPLEFT");
 			}
 		}
 		if(! MonsterCollision("UPRIGHT",mobile)){
-			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()+32)))+Math.abs((lorann.getY()-(mobile.getY()-32))) /*&& ! MonsterCollision("UPRIGHT",mobile)*/){
+			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()+32)))+Math.abs((lorann.getY()-(mobile.getY()-32)))){
 				PlusRapide = Math.abs((lorann.getX()-(mobile.getX()+32)))+Math.abs((lorann.getY()-(mobile.getY()-32)));
 				mobile.setDir("UPRIGHT");
 			}
 		}
 		if(! MonsterCollision("DOWNLEFT",mobile)){
-			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()-32)))+Math.abs((lorann.getY()-(mobile.getY()+32))) /*&& ! MonsterCollision("DOWNLEFT",mobile)*/){
+			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()-32)))+Math.abs((lorann.getY()-(mobile.getY()+32)))){
 				PlusRapide = Math.abs((lorann.getX()-(mobile.getX()-32)))+Math.abs((lorann.getY()-(mobile.getY()+32)));
 				mobile.setDir("DOWNLEFT");
 			}
 		}
 		if(! MonsterCollision("DOWNRIGHT",mobile)){
-			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()+32)))+Math.abs((lorann.getY()-(mobile.getY()+32))) /*&& ! MonsterCollision("DOWNRIGHT",mobile)*/){
+			if (PlusRapide > Math.abs((lorann.getX()-(mobile.getX()+32)))+Math.abs((lorann.getY()-(mobile.getY()+32)))){
 				PlusRapide = Math.abs((lorann.getX()-(mobile.getX()+32)))+Math.abs((lorann.getY()-(mobile.getY()+32)));
 				mobile.setDir("DOWNRIGHT");
 			}

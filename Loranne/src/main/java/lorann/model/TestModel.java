@@ -10,6 +10,7 @@ import junit.framework.TestCase;
 
 public class TestModel extends TestCase {
 
+	@SuppressWarnings("unused")
 	private GameBoard gameboard ;
 	
 	public TestModel(){
